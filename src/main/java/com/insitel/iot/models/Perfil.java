@@ -3,11 +3,17 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -19,9 +25,9 @@ import javax.persistence.Table;
 public class Perfil {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "pro_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pro_id", unique = true, nullable = false)
+	private Long id;
 	
 	@Column(name = "pro_document_type", length = 20)
 	private String tipoDocumento;
@@ -44,8 +50,10 @@ public class Perfil {
 	@Column(name ="pro_email", length = 100)
 	private String correo;
 	
-	@Column(name ="pro_rol_id")
-	private long rolAcceso;
+	@JoinColumn(name ="pro_rol_id", referencedColumnName = "rol_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Rol rolAcceso;
 	
 	@Column(name = "pro_status", length = 3)
 	private String estado;
@@ -55,7 +63,7 @@ public class Perfil {
 
 	//**Getters y setters
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -119,11 +127,11 @@ public class Perfil {
 		this.correo = correo;
 	}
 
-	public long getRolAcceso() {
+	public Rol getRolAcceso() {
 		return rolAcceso;
 	}
 
-	public void setRolAcceso(long rolAcceso) {
+	public void setRolAcceso(Rol rolAcceso) {
 		this.rolAcceso = rolAcceso;
 	}
 

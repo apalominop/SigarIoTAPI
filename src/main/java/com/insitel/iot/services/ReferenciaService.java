@@ -4,8 +4,6 @@
 package com.insitel.iot.services;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +32,15 @@ public class ReferenciaService {
 	 */
 	public ArrayList<Referencia> obtenerHijos(String cod) throws Exception {
 		return referenciaRepository.findByRefRefCodigo(cod);
+	}
+	
+	/**
+	 * Método para obtener todas las referencias
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<Referencia> obtenerTodasReferencias() throws Exception {
+		return (ArrayList<Referencia>) referenciaRepository.findAll();
 	}
 
 }

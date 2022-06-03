@@ -50,15 +50,13 @@ public class LlaveController {
 	public ResponseEntity<FileMessage> guardarLlave(@RequestBody Llave llave) throws Exception {
 		
 		String message = "";
-		long id = llave.getId();
-		long compania = llave.getCompania();
-		String tipo = llave.getTipo();
+		Long id = llave.getId();
 		
 		Optional<Llave> encontrada = llaveService.obtenerLlavePorId(id);
 		if (encontrada.isPresent()) {
 			Llave aGrabar = encontrada.get();
-			aGrabar.setCompania(compania);
-			aGrabar.setTipo(tipo);
+			aGrabar.setCompania(llave.getCompania());
+			aGrabar.setTipo(llave.getTipo());
 			llaveService.guardarLlave(aGrabar);
 			message = "Se actualizó la Llave exitosamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));
@@ -78,13 +76,12 @@ public class LlaveController {
 	public ResponseEntity<FileMessage> cambiarEstadoLlave(@RequestBody Llave llave) throws Exception {
 		
 		String message = "";
-		long id = llave.getId();
-		String estado = llave.getEstado();
+		Long id = llave.getId();
 		
 		Optional<Llave> encontrada = llaveService.obtenerLlavePorId(id);
 		if (encontrada.isPresent()) {
 			Llave aGrabar = encontrada.get();
-			aGrabar.setEstado(estado);
+			aGrabar.setEstado(llave.getEstado());
 			llaveService.guardarLlave(aGrabar);
 			message = "Se cambió el estado de la Llave exitosamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));

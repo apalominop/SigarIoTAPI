@@ -3,11 +3,17 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -19,23 +25,25 @@ import javax.persistence.Table;
 public class Rol {
 	
 	@Id
-	@Basic(optional = false)
-	@Column(name = "rol_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "rol_id", unique = true, nullable = false)
+	private Long id;
 	
 	@Column(name ="rol_name", length = 40)
 	private String nombre; 
 	
-	@Column(name = "rol_pro_id")
-	private long perfil;
+	@JoinColumn(name = "rol_pro_id", referencedColumnName = "pro_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Perfil perfil;
 	
 	//**Getters y setters
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -47,11 +55,11 @@ public class Rol {
 		this.nombre = nombre;
 	}
 
-	public long getPerfil() {
+	public Perfil getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(long perfil) {
+	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
 

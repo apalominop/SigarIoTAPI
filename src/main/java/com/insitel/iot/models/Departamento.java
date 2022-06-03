@@ -4,10 +4,17 @@
 package com.insitel.iot.models;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -19,23 +26,25 @@ import javax.persistence.Table;
 public class Departamento {
 	
 	@Id
-	@Basic(optional = false)
-	@Column(name = "dep_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "dep_id", unique = true, nullable = false)
+	private Long id;
 	
 	@Column(name = "dep_name", length = 100)
 	private String nombre;
 	
-	@Column(name = "dep_cmp_id")
-	private long compania;
+//	@JoinColumn(name = "dep_cmp_id", referencedColumnName = "cmp_id")
+//	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//	private Compania compania;
 
 	
 	//**Getters y setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -47,17 +56,17 @@ public class Departamento {
 		this.nombre = nombre;
 	}
 
-	public Long getCompania() {
-		return compania;
-	}
+//	public Compania getCompania() {
+//		return compania;
+//	}
+//
+//	public void setCompania(Compania compania) {
+//		this.compania = compania;
+//	}
 
-	public void setCompania(long compania) {
-		this.compania = compania;
-	}
-
-	@Override
-	public String toString() {
-		return "Departamento [id=" + id + ", nombre=" + nombre + ", compania=" + compania + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Departamento [id=" + id + ", nombre=" + nombre + ", compania=" + compania + "]";
+//	}
 	
 }

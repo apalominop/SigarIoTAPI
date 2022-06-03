@@ -49,6 +49,7 @@ public class CompaniaController {
 	 */
 	@RequestMapping(value = "crear", method = RequestMethod.POST)
 	public ResponseEntity<FileMessage> crearCompania(@RequestBody Compania compania) throws Exception {
+		
 		String message = "";
 		companiaService.guardarCompañia(compania);
 		message = "Se creó la Compañía exitosamente";
@@ -65,7 +66,7 @@ public class CompaniaController {
 	public ResponseEntity<FileMessage> actualizarCia(@RequestBody Compania compania) throws Exception {
 		
 		String message = "";
-		long id = compania.getId();
+		Long id = compania.getId();
 		String nit = compania.getNit();
 		String contacto = compania.getContacto();
 		String correo = compania.getCorreo();
@@ -75,7 +76,6 @@ public class CompaniaController {
 		String nombre = compania.getNombre();
 		Long paisId = compania.getPaisId();
 		String telefono = compania.getTelefono();
-		String tipo = compania.getTipo();
 		
 		Optional<Compania> encontrada = companiaService.obtenerCompaniaPorId(id);
 		if (encontrada.isPresent()) {
@@ -89,7 +89,7 @@ public class CompaniaController {
 			aGrabar.setNombre(nombre);
 			aGrabar.setPaisId(paisId);
 			aGrabar.setTelefono(telefono);
-			aGrabar.setTipo(tipo);
+			aGrabar.setTipo(compania.getTipo());
 			
 			companiaService.guardarCompañia(aGrabar);
 			message = "Se actualizó la Compañía exitosamente";
@@ -111,13 +111,12 @@ public class CompaniaController {
 	public ResponseEntity<FileMessage> cambiarEstadoCia(@RequestBody Compania compania) throws Exception {
 		
 		String message = "";
-		long id = compania.getId();
-		String estado = compania.getCodigo();
+		Long id = compania.getId();
 		
 		Optional<Compania> encontrada = companiaService.obtenerCompaniaPorId(id);
 		if (encontrada.isPresent()) {
 			Compania aGrabar = encontrada.get();
-			aGrabar.setCodigo(estado);
+			aGrabar.setCodigo(compania.getCodigo());
 			companiaService.guardarCompañia(aGrabar);
 			message = "Se cambió el estado de la Compania exitosamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));

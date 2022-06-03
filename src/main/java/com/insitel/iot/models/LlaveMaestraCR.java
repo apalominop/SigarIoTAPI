@@ -3,11 +3,17 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -19,15 +25,19 @@ import javax.persistence.Table;
 public class LlaveMaestraCR {
 	
 	@Id
-	@Basic(optional = false)
-	@Column(name = "mkc_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "mkc_id", unique = true, nullable = false)
+	private Long id;
 
-	@Column(name = "mkc_mcr_id")
-	private long masterControlRegional;
+	@JoinColumn(name = "mkc_mcr_id", referencedColumnName = "mcr_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private MasterControlRegional masterControlRegional;
 
-	@Column(name = "mkc_key_id")
-	private long llave;
+	@JoinColumn(name = "mkc_key_id", referencedColumnName = "key_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Llave llave;
 	
 	//**Getters y setters
 
@@ -35,23 +45,23 @@ public class LlaveMaestraCR {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getMasterControlRegional() {
+	public MasterControlRegional getMasterControlRegional() {
 		return masterControlRegional;
 	}
 
-	public void setMasterControlRegional(long masterControlRegional) {
+	public void setMasterControlRegional(MasterControlRegional masterControlRegional) {
 		this.masterControlRegional = masterControlRegional;
 	}
 
-	public long getLlave() {
+	public Llave getLlave() {
 		return llave;
 	}
 
-	public void setLlave(long llave) {
+	public void setLlave(Llave llave) {
 		this.llave = llave;
 	}
 

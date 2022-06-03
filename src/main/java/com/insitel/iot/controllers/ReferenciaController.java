@@ -28,7 +28,7 @@ public class ReferenciaController {
 	ReferenciaService referenciaService;
 	
 	/**
-	 * API para obtener las referencias hijas de un padre
+	 * Servicio para obtener las referencias hijas de un padre
 	 * @param cod
 	 * @return
 	 * @throws Exception
@@ -42,5 +42,12 @@ public class ReferenciaController {
 			return ResponseEntity.noContent().build();
 		}
 	}
-
+	
+	/**
+	 * Servicio para obtener todas las referencias
+	 */
+	@RequestMapping(value = "obtenertodas", method = RequestMethod.GET)
+	public ArrayList<Referencia> obtenerTodasReferencias() throws Exception {
+		return referenciaService.obtenerTodasReferencias();
+	}
 }

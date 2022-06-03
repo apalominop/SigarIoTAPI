@@ -7,10 +7,17 @@ package com.insitel.iot.models;
 import java.sql.Date;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,12 +32,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class DiaFestivo {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "hol_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "hol_id", unique = true, nullable = false)
+	private Long id;
 	
-	@Column(name = "hol_cnt_id")
-	private long pais;
+	@JoinColumn(name = "hol_cnt_id", referencedColumnName = "cnt_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Pais pais;
 	
 	@Column(name = "hol_date")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -40,19 +49,19 @@ public class DiaFestivo {
 	private String descripcion;
 
 	//**Getters y setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getPais() {
+	public Pais getPais() {
 		return pais;
 	}
 
-	public void setPais(long pais) {
+	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
 

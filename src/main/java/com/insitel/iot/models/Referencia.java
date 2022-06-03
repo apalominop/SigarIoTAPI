@@ -45,6 +45,18 @@ public class Referencia implements Serializable {
 	
 	@Column(name = "ref_ref_code")
 	private String refRefCodigo;
+	
+
+	public Referencia(Long id, String refCodigo) {
+		super();
+		this.id = id;
+		this.refCodigo = refCodigo;
+	}
+
+	public Referencia() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	//**Getter y setters
 	

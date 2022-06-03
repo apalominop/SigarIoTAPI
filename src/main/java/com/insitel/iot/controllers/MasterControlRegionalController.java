@@ -51,7 +51,7 @@ public class MasterControlRegionalController {
 	public ResponseEntity<FileMessage> guardarCrm(@RequestBody MasterControlRegional mcr) throws Exception {
 		
 		String message = "";
-		long id = mcr.getId();
+		Long id = mcr.getId();
 		String direccion = mcr.getDireccion();
 		String nombre = mcr.getNombre();
 		double latitud = mcr.getLatitud();
@@ -84,13 +84,12 @@ public class MasterControlRegionalController {
 	public ResponseEntity<FileMessage> cambiarEstadoMcr(@RequestBody MasterControlRegional mcr) throws Exception {
 		
 		String message = "";
-		long id = mcr.getId();
-		String estado = mcr.getEstado();
+		Long id = mcr.getId();
 		
 		Optional<MasterControlRegional> encontrado = masterControlRegionalService.buscarMcrPorId(id);
 		if (encontrado.isPresent()) {
 			MasterControlRegional aGrabar = encontrado.get();
-			aGrabar.setEstado(estado);
+			aGrabar.setEstado(mcr.getEstado());
 			
 			masterControlRegionalService.guardarMCR(aGrabar);
 			message = "Se cambió el estado del CR exitosamente";

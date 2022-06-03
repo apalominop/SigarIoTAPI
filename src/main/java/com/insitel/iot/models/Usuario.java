@@ -3,11 +3,17 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -18,8 +24,8 @@ import javax.persistence.Table;
 public class Usuario {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "usr_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usr_id", unique = true, nullable = false)
 	private Long id;
 
 	@Column(name = "usr_doc_id", length = 20)
@@ -31,8 +37,10 @@ public class Usuario {
 	@Column(name = "usr_lastname", length = 100)
 	private String apellido;
 
-	@Column(name = "usr_status", length = 3)
-	private String estado;
+	@JoinColumn(name = "usr_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estado;
 
 	@Column(name = "usr_phone", length = 20)
 	private String telefono;
@@ -40,14 +48,20 @@ public class Usuario {
 	@Column(name = "usr_cellphone", length = 20)
 	private String celular;
 
-	@Column(name = "usr_type", length = 3)
-	private String tipo;
+	@JoinColumn(name = "usr_type", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia tipo;
 
-	@Column(name = "usr_cmp_id")
-	private Long compania;
+	@JoinColumn(name = "usr_cmp_id", referencedColumnName = "cmp_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Compania compania;
 	
-	@Column(name = "usr_dep_id")
-    private Long departamento;
+	@JoinColumn(name = "usr_dep_id", referencedColumnName = "dep_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Departamento departamento;
 
 	@Column(name = "usr_email", length = 100)
 	private String correo;
@@ -86,11 +100,11 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public String getEstado() {
+	public Referencia getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Referencia estado) {
 		this.estado = estado;
 	}
 
@@ -110,27 +124,27 @@ public class Usuario {
 		this.celular = celular;
 	}
 
-	public String getTipo() {
+	public Referencia getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Referencia tipo) {
 		this.tipo = tipo;
 	}
 
-	public Long getCompania() {
+	public Compania getCompania() {
 		return compania;
 	}
 
-	public void setCompania(Long compania) {
+	public void setCompania(Compania compania) {
 		this.compania = compania;
 	}
 
-	public Long getDepartamento() {
+	public Departamento getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(Long departamento) {
+	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
 

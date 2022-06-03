@@ -49,8 +49,12 @@ public class GrupoController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "crear", method = RequestMethod.POST)
-	public Grupo crearGrupo(@RequestBody Grupo grupo) throws Exception {
-		return grupoService.guardarGrupo(grupo);
+	public ResponseEntity<FileMessage> crearGrupo(@RequestBody Grupo grupo) throws Exception {
+		
+		String message = "";
+		grupoService.guardarGrupo(grupo);
+		message = "Se actualizó el Grupo exitosamente";
+		return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));
 	}
 	
 	/**
@@ -63,8 +67,7 @@ public class GrupoController {
 	public ResponseEntity<FileMessage> actualizarGrupo(@RequestBody Grupo grupo) throws Exception {
 		
 		String message = "";
-		long id = grupo.getId();
-		long compania = grupo.getCompania();
+		Long id = grupo.getId();
 		boolean diaFestivo = grupo.isDiaFestivo();
 		boolean domingo = grupo.isDomingo();
 		Date finFecha = grupo.getFinFecha();
@@ -78,7 +81,7 @@ public class GrupoController {
 		Optional<Grupo> encontrado = grupoService.obtenerGrupoPorId(id);
 		if (encontrado.isPresent()) {
 			Grupo aGrabar = encontrado.get();
-			aGrabar.setCompania(compania);
+			aGrabar.setCompania(grupo.getCompania());
 			aGrabar.setDiaFestivo(diaFestivo);
 			aGrabar.setDomingo(domingo);
 			aGrabar.setFinFecha(finFecha);;
@@ -109,13 +112,12 @@ public class GrupoController {
 	public ResponseEntity<FileMessage> cambiarEstadoGrupo(@RequestBody Grupo grupo) throws Exception {
 		
 		String message = "";
-		long id = grupo.getId();
-		String estado = grupo.getEstado();
+		Long id = grupo.getId();
 		
 		Optional<Grupo> encontrado = grupoService.obtenerGrupoPorId(id);
 		if (encontrado.isPresent()) {
 			Grupo aGrabar = encontrado.get();
-			aGrabar.setEstado(estado);
+			aGrabar.setEstado(grupo.getEstado());
 			
 			grupoService.guardarGrupo(aGrabar);
 			message = "Se cambió el estado del Grupo exitosamente";

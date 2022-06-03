@@ -51,7 +51,7 @@ public class InterfazArmarioController {
 	public ResponseEntity<FileMessage> guardarIa(@RequestBody InterfazArmario ia) throws Exception {
 		
 		String message = "";
-		long id = ia.getId();
+		Long id = ia.getId();
 		String direccion = ia.getDireccion();
 		double latitud = ia.getLatitud();
 		double longitud = ia.getLongitud();
@@ -84,12 +84,12 @@ public class InterfazArmarioController {
 	public ResponseEntity<FileMessage> cambiarEstadoIa(@RequestBody InterfazArmario ia) throws Exception {
 		
 		String message = "";
-		long id = ia.getId();
-		String estado = ia.getEstado();
+		Long id = ia.getId();
+		
 		Optional<InterfazArmario> encontrada = interfazArmarioService.obtenerIaPorId(id);
 		if (encontrada.isPresent()) {
 			InterfazArmario aGrabar = encontrada.get();
-			aGrabar.setEstado(estado);
+			aGrabar.setEstado(ia.getEstado());
 			interfazArmarioService.guardarIa(aGrabar);
 			message = "Se cambió el estado de la IA exitosamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));

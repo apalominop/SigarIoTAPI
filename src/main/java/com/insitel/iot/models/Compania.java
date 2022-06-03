@@ -4,10 +4,17 @@
 package com.insitel.iot.models;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 
 /**
@@ -20,18 +27,20 @@ import javax.persistence.Table;
 public class Compania {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "cmp_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cmp_id", unique = true, nullable = false)
+	private Long id;
 	
-	@Column(name = "cmp_code", length = 3)
-	private String codigo;
+	@JoinColumn(name = "cmp_code", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia codigo;
 	
 	@Column(name = "cmp_name", length = 100)
 	private String nombre;
 	
 	@Column(name = "cmp_cnt_id")
-	private long paisId;
+	private Long paisId;
 	
 	@Column(name = "cmp_address", length = 200)
 	private String direccion;
@@ -45,8 +54,10 @@ public class Compania {
 	@Column(name = "cmp_companyid", length = 50)
 	private String nit;
 	
-	@Column(name = "cmp_type", length = 3)
-	private String tipo;
+	@JoinColumn(name = "cmp_type", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia tipo;
 	
 	@Column(name = "cmp_contact", length = 200)
 	private String contacto;
@@ -57,26 +68,21 @@ public class Compania {
 	@Column(name = "cmp_email", length = 50)
 	private String correo;
 
-	
-	public Compania() {
-		super();
-	}
-	
-
 	//**Getters y setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getCodigo() {
+	public Referencia getCodigo() {
 		return codigo;
 	}
-	
-	public void setCodigo(String codigo) {
+
+
+	public void setCodigo(Referencia codigo) {
 		this.codigo = codigo;
 	}
 
@@ -88,11 +94,11 @@ public class Compania {
 		this.nombre = nombre;
 	}
 
-	public long getPaisId() {
+	public Long getPaisId() {
 		return paisId;
 	}
 
-	public void setPaisId(long paisId) {
+	public void setPaisId(Long paisId) {
 		this.paisId = paisId;
 	}
 
@@ -128,11 +134,11 @@ public class Compania {
 		this.nit = nit;
 	}
 
-	public String getTipo() {
+	public Referencia getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Referencia tipo) {
 		this.tipo = tipo;
 	}
 

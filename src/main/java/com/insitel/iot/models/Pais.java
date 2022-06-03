@@ -3,9 +3,10 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 /**
@@ -18,9 +19,9 @@ import javax.persistence.Table;
 public class Pais {
 	
 	@Id
-	@Basic(optional = false)
-	@Column(name = "cnt_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cnt_id", unique = true, nullable = false)
+	private Long id;
 	
 	@Column(name = "cnt_code", length = 3)
 	private String codigo;
@@ -30,11 +31,11 @@ public class Pais {
 
 	//**Getters y setters
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

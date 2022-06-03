@@ -3,9 +3,10 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,8 +20,8 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-	@Basic(optional = false)
-	@Column(name = "usrl_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "usrl_id", unique = true, nullable = false)
 	private Long id;
 	
 	@Column(name = "usrl_name", length = 200)

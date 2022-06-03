@@ -48,8 +48,11 @@ public class UsuarioController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "crear", method = RequestMethod.POST)
-	public Usuario crearUsuario(@RequestBody Usuario usuario) throws Exception {
-		return usuarioService.guardarUsuario(usuario);
+	public ResponseEntity<FileMessage> crearUsuario(@RequestBody Usuario usuario) throws Exception {
+		String message = "";
+		usuarioService.guardarUsuario(usuario);
+		message = "Se creó el Usuario correctamente";
+		return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));
 	}
 	
 	/**
@@ -67,11 +70,8 @@ public class UsuarioController {
 		String nombre = usuario.getNombre();
 		String apellido = usuario.getApellido();
 		String celular = usuario.getCelular();
-		long compania = usuario.getCompania();
 		String correo = usuario.getCorreo();
-		long departamento = usuario.getDepartamento();
 		String telefono = usuario.getTelefono();
-		String tipo = usuario.getTipo();
 		
 		Optional<Usuario> encontrado = usuarioService.buscarUsuarioPorId(id);
 		if (encontrado.isPresent()) {
@@ -80,14 +80,14 @@ public class UsuarioController {
 			aGrabar.setNombre(nombre);
 			aGrabar.setApellido(apellido);
 			aGrabar.setCelular(celular);
-			aGrabar.setCompania(compania);
+			aGrabar.setCompania(usuario.getCompania());
 			aGrabar.setCorreo(correo);
-			aGrabar.setDepartamento(departamento);
+			aGrabar.setDepartamento(usuario.getDepartamento());
 			aGrabar.setTelefono(telefono);
-			aGrabar.setTipo(tipo);
+			aGrabar.setTipo(usuario.getTipo());
 			
 			usuarioService.guardarUsuario(aGrabar);
-			message = "Se cambió el estado de Usuario correctamente";
+			message = "Se actualizó el Usuario correctamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));
 		} else {
 			message = "Error al grabar Usuario";
@@ -107,12 +107,11 @@ public class UsuarioController {
 		
 		String message = "";
 		Long id = usuario.getId();
-		String estado = usuario.getEstado();
 		
 		Optional<Usuario> encontrado = usuarioService.buscarUsuarioPorId(id);
 		if (encontrado.isPresent()) {
 			Usuario aGrabar = encontrado.get();
-			aGrabar.setEstado(estado);
+			aGrabar.setEstado(usuario.getEstado());
 			usuarioService.guardarUsuario(aGrabar);
 			message = "Se cambió el estado de Usuario correctamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));

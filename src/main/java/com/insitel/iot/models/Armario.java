@@ -5,11 +5,14 @@ package com.insitel.iot.models;
 
 import java.sql.Date;
 
-import javax.persistence.Basic;
+import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,15 +26,19 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Armario {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "cab_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cab_id", unique = true, nullable = false)
+	private Long id;
 
-	@Column(name = "cab_mcr_id")
-	private long masterControlRegional;
+	@JoinColumn(name = "cab_mcr_id", referencedColumnName = "mcr_id", nullable = false)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private MasterControlRegional masterControlRegional;
 
-	@Column(name = "cab_iar_id")
-	private long interfazArmario;
+	@JoinColumn(name = "cab_iar_id", referencedColumnName = "iar_id", nullable = false)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private InterfazArmario interfazArmario;
 
 	@Column(name = "cab_created_at")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -46,8 +53,10 @@ public class Armario {
 	@Column(name = "cab_long")
 	private Double longitud;
 
-	@Column(name = "cab_status", length = 3)
-	private String estado;
+	@JoinColumn(name = "cab_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estado;
 
 	@Column(name = "cab_port_ia", length = 3)
 	private String puertoIA;
@@ -61,66 +70,94 @@ public class Armario {
 	@Column(name = "cab_clock", length = 5)
 	private String reloj;
 
-	@Column(name = "cab_door_status", length = 3)
-	private String estadoPuerta;
+	@JoinColumn(name = "cab_door_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoPuerta;
 
-	@Column(name = "cab_battery_status", length = 3)
-	private String estadoBateria;
+	@JoinColumn(name = "cab_battery_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoBateria;
 
-	@Column(name = "cab_reader_status", length = 3)
-	private String estadoLectura;
+	@JoinColumn(name = "cab_reader_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoLectura;
 
-	@Column(name = "cab_servo_status", length = 3)
-	private String estadoServomotor;
+	@JoinColumn(name = "cab_servo_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoServomotor;
 
-	@Column(name = "cab_position_status", length = 3)
-	private String estadoPosicion;
+	@JoinColumn(name = "cab_position_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoPosicion;
 
-	@Column(name = "cab_carrier_status", length = 3)
-	private String estadoCarrier;
+	@JoinColumn(name = "cab_carrier_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoCarrier;
 
-	@Column(name = "cab_power_status", length = 3)
-	private String estadoEnergia;
+	@JoinColumn(name = "cab_power_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoEnergia;
 
-	@Column(name = "cab_activation_status", length = 3)
-	private String estadoActivacion;
+	@JoinColumn(name = "cab_activation_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoActivacion;
 
-	@Column(name = "cab_masterkey_status", length = 3)
-	private String estadoLlaveMaestra;
+	@JoinColumn(name = "cab_masterkey_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoLlaveMaestra;
 
-	@Column(name = "cab_sleep_rfid_status", length = 3)
-	private String estadoRfidDormir;
+	@JoinColumn(name = "cab_sleep_rfid_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoRfidDormir;
 
-	@Column(name = "cab_sensor1_status", length = 3)
-	private String estadoSensor1;
+	@JoinColumn(name = "cab_sensor1_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoSensor1;
 
-	@Column(name = "cab_sensor2_status", length = 3)
-	private String estadoSensor2;
+	@JoinColumn(name = "cab_sensor2_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoSensor2;
 
-	@Column(name = "cab_sensor3_status", length = 3)
-	private String estadoSensor3;
+	@JoinColumn(name = "cab_sensor3_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoSensor3;
 	
-	@Column(name = "cab_sensor4_status", length = 3)
-	private String estadoSensor4;
+	@JoinColumn(name = "cab_sensor4_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)	
+	private Referencia estadoSensor4;
 
 	@Column(name = "cab_number")
 	private Long numeroArmario;
 	
 	//**Getters y setters
 	
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getMasterControlRegional() {
+	public MasterControlRegional getMasterControlRegional() {
 		return masterControlRegional;
 	}
 
-	public long getInterfazArmario() {
+	public InterfazArmario getInterfazArmario() {
 		return interfazArmario;
 	}
 
@@ -152,11 +189,11 @@ public class Armario {
 		this.longitud = longitud;
 	}
 
-	public String getEstado() {
+	public Referencia getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Referencia estado) {
 		this.estado = estado;
 	}
 
@@ -180,59 +217,59 @@ public class Armario {
 		return reloj;
 	}
 
-	public String getEstadoPuerta() {
+	public Referencia getEstadoPuerta() {
 		return estadoPuerta;
 	}
 
-	public String getEstadoBateria() {
+	public Referencia getEstadoBateria() {
 		return estadoBateria;
 	}
 
-	public String getEstadoLectura() {
+	public Referencia getEstadoLectura() {
 		return estadoLectura;
 	}
 
-	public String getEstadoServomotor() {
-		return estadoServomotor;
-	}
-
-	public String getEstadoPosicion() {
+	public Referencia getEstadoPosicion() {
 		return estadoPosicion;
 	}
 
-	public String getEstadoCarrier() {
+	public Referencia getEstadoCarrier() {
 		return estadoCarrier;
 	}
 
-	public String getEstadoEnergia() {
+	public Referencia getEstadoEnergia() {
 		return estadoEnergia;
 	}
 
-	public String getEstadoActivacion() {
+	public Referencia getEstadoActivacion() {
 		return estadoActivacion;
 	}
 
-	public String getEstadoLlaveMaestra() {
+	public Referencia getEstadoLlaveMaestra() {
 		return estadoLlaveMaestra;
 	}
 
-	public String getEstadoRfidDormir() {
+	public Referencia getEstadoRfidDormir() {
 		return estadoRfidDormir;
 	}
 
-	public String getEstadoSensor1() {
+	public Referencia getEstadoSensor1() {
 		return estadoSensor1;
 	}
 
-	public String getEstadoSensor2() {
+	public Referencia getEstadoSensor2() {
 		return estadoSensor2;
 	}
 
-	public String getEstadoSensor3() {
+	public Referencia getEstadoSensor3() {
 		return estadoSensor3;
 	}
 
-	public String getEstadoSensor4() {
+	public void setEstadoSensor3(Referencia estadoSensor3) {
+		this.estadoSensor3 = estadoSensor3;
+	}
+
+	public Referencia getEstadoSensor4() {
 		return estadoSensor4;
 	}
 
@@ -253,7 +290,5 @@ public class Armario {
 				+ ", estadoSensor1=" + estadoSensor1 + ", estadoSensor2=" + estadoSensor2 + ", estadoSensor3="
 				+ estadoSensor3 + ", estadoSensor4=" + estadoSensor4 + ", numeroArmario=" + numeroArmario + "]";
 	}
-	
-	
 
 }

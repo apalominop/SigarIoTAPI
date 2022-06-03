@@ -4,14 +4,20 @@
 package com.insitel.iot.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.sql.Date;
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * @author JAgustín Palomino Pardo
@@ -23,9 +29,9 @@ import javax.persistence.Id;
 public class MasterControlRegional {
 	
 	@Id
-	@Basic(optional = false)
-	@Column(name = "mcr_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "mcr_id", unique = true, nullable = false)
+	private Long id;
 	
 	@Column(name = "mcr_name", length = 100)
 	private String nombre;
@@ -34,8 +40,10 @@ public class MasterControlRegional {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fechaCreacion;
 	
-	@Column(name = "mcr_status", length = 3)
-	private String estado;
+	@JoinColumn(name = "mcr_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estado;
 	
 	@Column(name = "mcr_address", length = 200)
 	private String direccion;
@@ -54,11 +62,11 @@ public class MasterControlRegional {
 	
 	//**Getters y setters
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -74,11 +82,11 @@ public class MasterControlRegional {
 		return fechaCreacion;
 	}
 
-	public String getEstado() {
+	public Referencia getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Referencia estado) {
 		this.estado = estado;
 	}
 

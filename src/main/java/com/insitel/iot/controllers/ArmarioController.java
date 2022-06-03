@@ -53,7 +53,7 @@ public class ArmarioController {
 	public ResponseEntity<FileMessage> guardarArmario(@RequestBody Armario armario) throws Exception {
 		
 		String message = "";
-		long id = armario.getId();
+		Long id = armario.getId();
 		String direccion = armario.getDireccion();
 		String distrito = armario.getDistrito();
 		Double latitud = armario.getLatitud();
@@ -87,13 +87,12 @@ public class ArmarioController {
 	public ResponseEntity<FileMessage> cambiarEstadoArmario(@RequestBody Armario armario) throws Exception {
 		
 		String message = "";
-		long id = armario.getId();
-		String estado = armario.getEstado();
+		Long id = armario.getId();
 
 		Optional<Armario> encontrado = armarioService.obtenerArmarioPorId(id);
 		if (encontrado.isPresent()) {
 			Armario aGrabar = encontrado.get();
-			aGrabar.setEstado(estado);
+			aGrabar.setEstado(armario.getEstado());
 			
 			armarioService.guardarArmario(aGrabar);
 			message = "Se cambió el estado del Armario correctamente";

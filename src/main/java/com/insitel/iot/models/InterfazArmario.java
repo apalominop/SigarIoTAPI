@@ -3,11 +3,17 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -19,12 +25,14 @@ import javax.persistence.Table;
 public class InterfazArmario {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "iar_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "iar_id", unique = true, nullable = false)
+	private Long id;
 
-	@Column(name = "iar_mcr_id")
-	private long masterControlRegional;
+	@JoinColumn(name = "iar_mcr_id", referencedColumnName = "mcr_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private MasterControlRegional masterControlRegional;
 	
 	@Column(name = "iar_name", length = 100)
 	private String nombre;
@@ -38,17 +46,23 @@ public class InterfazArmario {
 	@Column(name = "iar_long", nullable = true)
 	private double longitud;
 	
-	@Column(name = "iar_com_status", length = 3)
-	private String estadoPuerto;
+	@JoinColumn(name = "iar_com_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estadoPuerto;
 	
-	@Column(name = "iar_status", length = 3)
-	private String estado;
+	@JoinColumn(name = "iar_status", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estado;
 	
 	@Column(name = "iar_com_port", length = 5)
 	private String puertoCom;
 	
-	@Column(name = "iar_type_8_16", length = 3)
-	private String tipo_8_16;
+	@JoinColumn(name = "iar_type_8_16", referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia tipo_8_16;
 	
 	@Column(name = "iar_carrier_0", length = 20)
 	private String carrier_0;
@@ -148,15 +162,15 @@ public class InterfazArmario {
 	
 	//**Getters y setters
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public long getMasterControlRegional() {
+	public MasterControlRegional getMasterControlRegional() {
 		return masterControlRegional;
 	}
 
@@ -192,15 +206,15 @@ public class InterfazArmario {
 		this.longitud = longitud;
 	}
 
-	public String getEstadoPuerto() {
+	public Referencia getEstadoPuerto() {
 		return estadoPuerto;
 	}
 
-	public String getEstado() {
+	public Referencia getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Referencia estado) {
 		this.estado = estado;
 	}
 
@@ -208,7 +222,7 @@ public class InterfazArmario {
 		return puertoCom;
 	}
 
-	public String getTipo_8_16() {
+	public Referencia getTipo_8_16() {
 		return tipo_8_16;
 	}
 

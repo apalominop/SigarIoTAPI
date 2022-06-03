@@ -5,11 +5,17 @@ package com.insitel.iot.models;
 
 import java.sql.Date;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,21 +29,25 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Grupo {
 
 	@Id
-	@Basic(optional = false)
-	@Column(name = "grp_id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "grp_id", unique = true, nullable = false)
+	private Long id;
 	
-	@Column(name = "grp_name", length = 20)
+	@Column(name = "grp_name", length = 20, nullable = false)
 	private String nombre;
 	
 	@Column(name = "grp_accountable", length = 100)
 	private String responsable;
 	
-	@Column(name = "grp_cmp_id")
-	private long compania;
+	@JoinColumn(name = "grp_cmp_id", referencedColumnName = "cmp_id")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Compania compania;
 	
-	@Column(name = "grp_status", length = 3)
-	private String estado;
+	@JoinColumn(name = "grp_status",referencedColumnName = "ref_code")
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	private Referencia estado;
 	
 	@Column(name = "grp_start_date")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -63,11 +73,11 @@ public class Grupo {
 	private boolean diaFestivo;
 	
 	//**Getters y setters
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -87,19 +97,19 @@ public class Grupo {
 		this.responsable = responsable;
 	}
 
-	public long getCompania() {
+	public Compania getCompania() {
 		return compania;
 	}
 
-	public void setCompania(long compania) {
+	public void setCompania(Compania compania) {
 		this.compania = compania;
 	}
 
-	public String getEstado() {
+	public Referencia getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Referencia estado) {
 		this.estado = estado;
 	}
 
