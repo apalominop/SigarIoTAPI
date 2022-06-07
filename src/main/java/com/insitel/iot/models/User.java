@@ -24,16 +24,16 @@ public class User {
 	@Column(name = "usrl_id", unique = true, nullable = false)
 	private Long id;
 	
-	@Column(name = "usrl_name", length = 200)
+	@Column(name = "usrl_name", length = 100)
 	private String nombre;
 	
-	@Column(name = "usrl_password", length = 200)
+	@Column(name = "usrl_password", length = 100)
 	private String password;
 	
 	@Column(name = "usrl_token", length = 200)
 	private String token;
 	
-	@Column(name = "usrl_email", length = 200)
+	@Column(name = "usrl_email", length = 100)
 	private String email;
 	
 	//**Getters y setters
