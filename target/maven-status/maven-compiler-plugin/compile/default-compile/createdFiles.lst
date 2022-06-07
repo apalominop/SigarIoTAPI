@@ -37,6 +37,7 @@ com\insitel\iot\controllers\DiaFestivoController.class
 com\insitel\iot\services\ReferenciaService.class
 com\insitel\iot\repositories\LlaveUsuarioRepository.class
 com\insitel\iot\services\GrupoService.class
+com\insitel\iot\controllers\UserBDController.class
 com\insitel\iot\repositories\ArmarioRepository.class
 com\insitel\iot\models\Grupo.class
 com\insitel\iot\controllers\ReferenciaController.class
@@ -55,6 +56,7 @@ com\insitel\iot\models\Referencia.class
 com\insitel\iot\repositories\UsuarioRepository.class
 com\insitel\iot\repositories\LlaveMaestraCRRepository.class
 com\insitel\iot\controllers\MasterControlRegionalController.class
+com\insitel\iot\repositories\UserRepository.class
 com\insitel\iot\controllers\UsuarioController.class
 com\insitel\iot\models\Departamento.class
 com\insitel\iot\repositories\InterfazArmarioRepository.class
@@ -62,6 +64,7 @@ com\insitel\iot\repositories\GrupoRepository.class
 com\insitel\iot\services\LlaveService.class
 com\insitel\iot\models\MasterControlRegional.class
 com\insitel\iot\controllers\ArmarioController.class
+com\insitel\iot\services\UserService.class
 com\insitel\iot\services\DiaFestivoService.class
 com\insitel\iot\models\User.class
 com\insitel\iot\repositories\CompaniaRepository.class
