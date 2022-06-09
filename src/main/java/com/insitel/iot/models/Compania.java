@@ -3,18 +3,12 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
-
 
 /**
  * @author Agustín Palomino Pardo
@@ -30,10 +24,8 @@ public class Compania {
 	@Column(name = "cmp_id", unique = true, nullable = false)
 	private Long id;
 	
-	@JoinColumn(name = "cmp_code", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia codigo;
+	@Column(name = "cmp_code", length = 3)
+	private String codigo;
 	
 	@Column(name = "cmp_name", length = 100)
 	private String nombre;
@@ -53,10 +45,8 @@ public class Compania {
 	@Column(name = "cmp_companyid", length = 50)
 	private String nit;
 	
-	@JoinColumn(name = "cmp_type", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia tipo;
+	@Column(name = "cmp_type", length = 3)
+	private String tipo;
 	
 	@Column(name = "cmp_contact", length = 200)
 	private String contacto;
@@ -76,12 +66,12 @@ public class Compania {
 		this.id = id;
 	}
 
-	public Referencia getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
 
-	public void setCodigo(Referencia codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -133,11 +123,11 @@ public class Compania {
 		this.nit = nit;
 	}
 
-	public Referencia getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Referencia tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 

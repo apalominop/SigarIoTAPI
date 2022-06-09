@@ -28,12 +28,6 @@ public class Departamento {
 	@Column(name = "dep_name", length = 100)
 	private String nombre;
 	
-//	@JoinColumn(name = "dep_cmp_id", referencedColumnName = "cmp_id")
-//	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-//	private Compania compania;
-
-	
 	//**Getters y setters
 	public Long getId() {
 		return id;
@@ -51,17 +45,9 @@ public class Departamento {
 		this.nombre = nombre;
 	}
 
-//	public Compania getCompania() {
-//		return compania;
-//	}
-//
-//	public void setCompania(Compania compania) {
-//		this.compania = compania;
-//	}
+	@Override
+	public String toString() {
+		return "Departamento [id=" + id + ", nombre=" + nombre + "]";
+	}
 
-//	@Override
-//	public String toString() {
-//		return "Departamento [id=" + id + ", nombre=" + nombre + ", compania=" + compania + "]";
-//	}
-	
 }

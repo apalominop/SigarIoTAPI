@@ -3,7 +3,6 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -30,13 +27,11 @@ public class LlaveUsuario {
 	private Long id;
 	
 	@JoinColumn(name = "kus_key_id", referencedColumnName = "key_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)   
+	@ManyToOne
 	private Llave llave;
 	
 	@JoinColumn(name = "kus_usr_id", referencedColumnName = "usr_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE) 
+	@ManyToOne
 	private Usuario usuario;
 	
 	//**Getters y setters

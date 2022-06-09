@@ -40,10 +40,8 @@ public class MasterControlRegional {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fechaCreacion;
 	
-	@JoinColumn(name = "mcr_status", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia estado;
+	@Column(name = "mcr_status", length = 3)
+	private String estado;
 	
 	@Column(name = "mcr_address", length = 200)
 	private String direccion;
@@ -82,11 +80,11 @@ public class MasterControlRegional {
 		return fechaCreacion;
 	}
 
-	public Referencia getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Referencia estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

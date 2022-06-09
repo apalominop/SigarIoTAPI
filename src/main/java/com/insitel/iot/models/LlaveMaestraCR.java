@@ -30,13 +30,15 @@ public class LlaveMaestraCR {
 	private Long id;
 
 	@JoinColumn(name = "mkc_mcr_id", referencedColumnName = "mcr_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	//@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	//@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@ManyToOne
 	private MasterControlRegional masterControlRegional;
 
 	@JoinColumn(name = "mkc_key_id", referencedColumnName = "key_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	//@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+	//@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@ManyToOne
 	private Llave llave;
 	
 	//**Getters y setters

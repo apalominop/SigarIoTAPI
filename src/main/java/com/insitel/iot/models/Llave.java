@@ -6,7 +6,6 @@ package com.insitel.iot.models;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -39,19 +36,14 @@ public class Llave implements Serializable {
 	@Column(name = "key_id", unique = true, nullable = false)
 	private Long id;
 	
-	@JoinColumn(name = "key_status", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia estado;
+	@Column(name = "key_status", length = 3)
+	private String estado;
 	
-	@JoinColumn(name = "key_type", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia tipo;
+	@Column(name = "key_type", length = 3)
+	private String tipo;
 	
 	@JoinColumn(name = "key_cmp_id", referencedColumnName = "cmp_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@ManyToOne
 	private Compania compania;
 	
 	@Column(name = "key_created_at")
@@ -71,19 +63,19 @@ public class Llave implements Serializable {
 		this.id = id;
 	}
 
-	public Referencia getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Referencia estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Referencia getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Referencia tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 

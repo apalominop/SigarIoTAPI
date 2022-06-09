@@ -37,10 +37,8 @@ public class Usuario {
 	@Column(name = "usr_lastname", length = 100)
 	private String apellido;
 
-	@JoinColumn(name = "usr_status", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia estado;
+	@Column(name = "usr_status", length = 3)
+	private String estado;
 
 	@Column(name = "usr_phone", length = 20)
 	private String telefono;
@@ -48,10 +46,8 @@ public class Usuario {
 	@Column(name = "usr_cellphone", length = 20)
 	private String celular;
 
-	@JoinColumn(name = "usr_type", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia tipo;
+	@Column(name = "usr_type", length = 3)
+	private String tipo;
 
 	@JoinColumn(name = "usr_cmp_id", referencedColumnName = "cmp_id")
 	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
@@ -100,11 +96,11 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public Referencia getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Referencia estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
@@ -124,11 +120,11 @@ public class Usuario {
 		this.celular = celular;
 	}
 
-	public Referencia getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Referencia tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 

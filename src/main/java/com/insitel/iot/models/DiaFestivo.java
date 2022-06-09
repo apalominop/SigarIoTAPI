@@ -6,7 +6,6 @@ package com.insitel.iot.models;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -36,8 +33,9 @@ public class DiaFestivo {
 	private Long id;
 	
 	@JoinColumn(name = "hol_cnt_id", referencedColumnName = "cnt_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@ManyToOne
 	private Pais pais;
 	
 	@Column(name = "hol_date")

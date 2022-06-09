@@ -33,6 +33,7 @@ com\insitel\iot\services\CompaniaService.class
 com\insitel\iot\models\Compania.class
 com\insitel\iot\controllers\DepartamentoController.class
 com\insitel\iot\repositories\MasterControlRegionalRepository.class
+com\insitel\iot\controllers\CargueInicial.class
 com\insitel\iot\controllers\DiaFestivoController.class
 com\insitel\iot\services\ReferenciaService.class
 com\insitel\iot\repositories\LlaveUsuarioRepository.class

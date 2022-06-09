@@ -5,7 +5,6 @@ package com.insitel.iot.models;
 
 import java.sql.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -40,14 +37,11 @@ public class Grupo {
 	private String responsable;
 	
 	@JoinColumn(name = "grp_cmp_id", referencedColumnName = "cmp_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@ManyToOne
 	private Compania compania;
 	
-	@JoinColumn(name = "grp_status",referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia estado;
+	@Column(name = "grp_status", length = 3)
+	private String estado;
 	
 	@Column(name = "grp_start_date")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -72,6 +66,28 @@ public class Grupo {
 	@Column(name = "grp_holiday")
 	private boolean diaFestivo;
 	
+	// Contructors
+	public Grupo() {
+		super();
+	}
+	
+	public Grupo(Long id, String nombre, String responsable, Compania compania, String estado, Date inicioFecha,
+			Date finFecha, String inicioHora, String finHora, boolean sabado, boolean domingo, boolean diaFestivo) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.responsable = responsable;
+		this.compania = compania;
+		this.estado = estado;
+		this.inicioFecha = inicioFecha;
+		this.finFecha = finFecha;
+		this.inicioHora = inicioHora;
+		this.finHora = finHora;
+		this.sabado = sabado;
+		this.domingo = domingo;
+		this.diaFestivo = diaFestivo;
+	}
+
 	//**Getters y setters
 	public Long getId() {
 		return id;
@@ -105,11 +121,11 @@ public class Grupo {
 		this.compania = compania;
 	}
 
-	public Referencia getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Referencia estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 

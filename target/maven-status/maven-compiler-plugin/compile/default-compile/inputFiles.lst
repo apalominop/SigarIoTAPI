@@ -32,6 +32,7 @@ C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controller
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\DiaFestivoService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\LlaveRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\DiaFestivo.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\CargueInicial.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\InsitelIoTapiRestApplication.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Referencia.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\InterfazArmarioController.java

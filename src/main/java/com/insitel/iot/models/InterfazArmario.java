@@ -46,23 +46,17 @@ public class InterfazArmario {
 	@Column(name = "iar_long", nullable = true)
 	private double longitud;
 	
-	@JoinColumn(name = "iar_com_status", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia estadoPuerto;
+	@Column(name = "iar_com_status", length = 3)
+	private String estadoPuerto;
 	
-	@JoinColumn(name = "iar_status", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia estado;
+	@Column(name = "iar_status", length = 3)
+	private String estado;
 	
 	@Column(name = "iar_com_port", length = 5)
 	private String puertoCom;
 	
-	@JoinColumn(name = "iar_type_8_16", referencedColumnName = "ref_code")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Referencia tipo_8_16;
+	@Column(name = "iar_type_8_16", length = 3)
+	private String tipo_8_16;
 	
 	@Column(name = "iar_carrier_0", length = 20)
 	private String carrier_0;
@@ -206,15 +200,15 @@ public class InterfazArmario {
 		this.longitud = longitud;
 	}
 
-	public Referencia getEstadoPuerto() {
+	public String getEstadoPuerto() {
 		return estadoPuerto;
 	}
 
-	public Referencia getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Referencia estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
@@ -222,7 +216,7 @@ public class InterfazArmario {
 		return puertoCom;
 	}
 
-	public Referencia getTipo_8_16() {
+	public String getTipo_8_16() {
 		return tipo_8_16;
 	}
 
