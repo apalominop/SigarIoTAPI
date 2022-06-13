@@ -51,7 +51,6 @@ public class UserBDController {
 	 */
 	@RequestMapping(value = "guardar", method = RequestMethod.POST)
 	public ResponseEntity<FileMessage> guardarUser(@RequestBody User user) throws Exception {
-		System.out.println(user);
 		String message = "";
 		userService.guardarUser(user);
 		message = "Se guardó el User Login exitosamente";

@@ -49,14 +49,12 @@ public class Usuario {
 	@Column(name = "usr_type", length = 3)
 	private String tipo;
 
+	@ManyToOne
 	@JoinColumn(name = "usr_cmp_id", referencedColumnName = "cmp_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	private Compania compania;
 	
 	@JoinColumn(name = "usr_dep_id", referencedColumnName = "dep_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@ManyToOne
     private Departamento departamento;
 
 	@Column(name = "usr_email", length = 100)
