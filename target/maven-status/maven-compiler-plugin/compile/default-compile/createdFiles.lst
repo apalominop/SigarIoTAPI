@@ -1,17 +1,23 @@
 com\insitel\iot\services\UsuarioService.class
+com\insitel\iot\repositories\IasEventosRepository.class
 com\insitel\iot\controllers\LlaveUsuarioController.class
 com\insitel\iot\controllers\GrupoController.class
 com\insitel\iot\controllers\PaisController.class
 com\insitel\iot\models\DiaFestivo.class
 com\insitel\iot\repositories\DepartamentoRepository.class
 com\insitel\iot\controllers\GrupoUsuarioController.class
+com\insitel\iot\models\FiltroEventosDTO.class
 com\insitel\iot\security\JWTAuthorizationFilter.class
 com\insitel\iot\services\GrupoUsuarioService.class
+com\insitel\iot\services\IasEventosService.class
 com\insitel\iot\services\LlaveMaestraCRService.class
+com\insitel\iot\repositories\EventoRepository.class
 com\insitel\iot\services\InterfazArmarioService.class
+com\insitel\iot\models\EventoUsuario.class
 com\insitel\iot\models\Armario.class
 com\insitel\iot\models\InterfazArmarioEvento.class
 com\insitel\iot\repositories\LlaveRepository.class
+com\insitel\iot\services\EventoService.class
 com\insitel\iot\models\Usuario.class
 com\insitel\iot\services\DepartamentoService.class
 com\insitel\iot\repositories\ReferenciaRepository.class
@@ -34,6 +40,7 @@ com\insitel\iot\models\Compania.class
 com\insitel\iot\controllers\DepartamentoController.class
 com\insitel\iot\repositories\MasterControlRegionalRepository.class
 com\insitel\iot\controllers\CargueInicial.class
+com\insitel\iot\controllers\EventoController.class
 com\insitel\iot\controllers\DiaFestivoController.class
 com\insitel\iot\services\ReferenciaService.class
 com\insitel\iot\repositories\LlaveUsuarioRepository.class
@@ -50,6 +57,7 @@ com\insitel\iot\controllers\LlaveController.class
 com\insitel\iot\models\InterfazArmario.class
 com\insitel\iot\controllers\InterfazArmarioController.class
 com\insitel\iot\models\Llave.class
+com\insitel\iot\models\FiltroEveUsrsKeysDTO.class
 com\insitel\iot\models\Evento.class
 com\insitel\iot\controllers\CompaniaController.class
 com\insitel\iot\InsitelIoTapiRestApplication.class
@@ -60,6 +68,7 @@ com\insitel\iot\controllers\MasterControlRegionalController.class
 com\insitel\iot\repositories\UserRepository.class
 com\insitel\iot\controllers\UsuarioController.class
 com\insitel\iot\models\Departamento.class
+com\insitel\iot\utils\Utils.class
 com\insitel\iot\repositories\InterfazArmarioRepository.class
 com\insitel\iot\repositories\GrupoRepository.class
 com\insitel\iot\services\LlaveService.class

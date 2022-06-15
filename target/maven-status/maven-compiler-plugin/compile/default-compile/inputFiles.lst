@@ -1,16 +1,22 @@
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\FiltroEventosDTO.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\MasterControlRegional.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\LlaveUsuarioService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\PaisService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\UserBDController.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\EventoController.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\GrupoUsuarioRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\User.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\EventoRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Perfil.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\ArmarioController.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\UsuarioRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\LlaveController.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\InterfazArmarioEvento.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Departamento.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\IasEventosService.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\EventoUsuario.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\InterfazArmario.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\FiltroEveUsrsKeysDTO.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\InterfazArmarioRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\LlaveUsuarioController.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\LlaveUsuario.java
@@ -49,6 +55,7 @@ C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controller
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Usuario.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\CompaniaService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Grupo.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\IasEventosRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\UserService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\MasterControlRegionalController.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\LlaveUsuarioRepository.java
@@ -59,6 +66,7 @@ C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\A
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\ArmarioRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\UsuarioService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\LlaveMaestraCRController.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\utils\Utils.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\controllers\DepartamentoController.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Rol.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Llave.java
@@ -66,5 +74,6 @@ C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\M
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\ReferenciaRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\repositories\GrupoRepository.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\InterfazArmarioService.java
+C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\EventoService.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\models\Pais.java
 C:\ProyectosGit\SigarIoTAPI\SigarIotAPI\src\main\java\com\insitel\iot\services\GrupoUsuarioService.java

@@ -8,6 +8,7 @@ import java.time.LocalTime;
 
 /**
  * @author Agustín Palomino Pardo
+ * Modelo de datos para el filtro de búsqueda de eventos de armarios e IAs
  *
  */
 
