@@ -4,6 +4,7 @@
 package com.insitel.iot.services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,23 @@ public class InterfazArmarioService {
 		return interfazArmarioRepository.save(ia);
 	}
 	
+	/**
+	 * Método para obtener una IA por id
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public Optional<InterfazArmario> obtenerIaPorId(Long id) throws Exception {
 		return interfazArmarioRepository.findById(id);
+	}
+	
+	/**
+	 * Método para obtener todos los estados de todas la IAs pertenecientes al CR
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Object[]> obtenerEstadosTodasIas() throws Exception {
+		return interfazArmarioRepository.obtenerEstadosTodasIas();
 	}
 
 }

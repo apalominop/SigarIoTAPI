@@ -4,6 +4,7 @@
 package com.insitel.iot.services;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,13 @@ public class ArmarioService {
 	 */
 	public Optional<Armario> obtenerArmarioPorId(Long id) throws Exception {
 		return armarioRepository.findById(id);
+	}
+	
+	/**
+	 * Método para obtener los estados de todos los armarios del CR
+	 */
+	public List<Object[]> obtenerEstadosTodosArmarios() throws Exception {
+		return armarioRepository.obtenerEstadosTodosArmarios();
 	}
 
 }

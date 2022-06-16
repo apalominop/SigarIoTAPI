@@ -4,6 +4,7 @@
 package com.insitel.iot.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,18 +55,18 @@ public class InterfazArmarioController {
 		
 		String message = "";
 		Long id = ia.getId();
-		String direccion = ia.getDireccion();
-		double latitud = ia.getLatitud();
-		double longitud = ia.getLongitud();
-		String nombre = ia.getNombre();
+		String direccion = ia.getDir();
+		double latitud = ia.getLat();
+		double longitud = ia.getLon();
+		String nombre = ia.getNom();
 		
 		Optional<InterfazArmario> encontrada = interfazArmarioService.obtenerIaPorId(id);
 		if (encontrada.isPresent()) {
 			InterfazArmario aGrabar = encontrada.get();
-			aGrabar.setDireccion(direccion);
-			aGrabar.setLatitud(latitud);
-			aGrabar.setLongitud(longitud);
-			aGrabar.setNombre(nombre);
+			aGrabar.setDir(direccion);
+			aGrabar.setLat(latitud);
+			aGrabar.setLon(longitud);
+			aGrabar.setNom(nombre);
 			
 			interfazArmarioService.guardarIa(aGrabar);
 			message = "Se actualizó la IA exitosamente";
@@ -91,7 +92,7 @@ public class InterfazArmarioController {
 		Optional<InterfazArmario> encontrada = interfazArmarioService.obtenerIaPorId(id);
 		if (encontrada.isPresent()) {
 			InterfazArmario aGrabar = encontrada.get();
-			aGrabar.setEstado(ia.getEstado());
+			aGrabar.setEst(ia.getEst());
 			interfazArmarioService.guardarIa(aGrabar);
 			message = "Se cambió el estado de la IA exitosamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));
@@ -101,7 +102,12 @@ public class InterfazArmarioController {
 		}
 	}
 	
-	
+	/**
+	 * Servicio para obtener una IA por id
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "porid/{id}", method = RequestMethod.POST)
 	public ResponseEntity<InterfazArmario> obtenerIaPorId(@PathVariable("id") Long id) throws Exception {
 		Optional<InterfazArmario> ia = interfazArmarioService.obtenerIaPorId(id);
@@ -111,4 +117,15 @@ public class InterfazArmarioController {
 			return ResponseEntity.noContent().build();
 		}
 	}
+	
+	/**
+	 * Servicio para obtener todos los estados de todas la IAs pertenecientes al CR
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "estados", method = RequestMethod.GET)
+	public List<Object[]> obtenerEstadosTodasIas() throws Exception {
+		return interfazArmarioService.obtenerEstadosTodasIas();
+	}
+	
 }

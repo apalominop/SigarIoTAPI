@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -37,21 +35,20 @@ public class Llave implements Serializable {
 	private Long id;
 	
 	@Column(name = "key_status", length = 3)
-	private String estado;
+	private String est;
 	
 	@Column(name = "key_type", length = 3)
 	private String tipo;
 	
-	@JoinColumn(name = "key_cmp_id", referencedColumnName = "cmp_id")
-	@ManyToOne
-	private Compania compania;
+	@Column(name = "key_cmp_id")
+	private Long comp;
 	
 	@Column(name = "key_created_at")
 	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date fechaCreacion;
+	private Date fCrea;
 	
 	@Column(name = "key_code", length = 20)
-	private String codigo;
+	private String cod;
 	
 	//**Getters y setters
 
@@ -63,12 +60,12 @@ public class Llave implements Serializable {
 		this.id = id;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getEst() {
+		return est;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEst(String est) {
+		this.est = est;
 	}
 
 	public String getTipo() {
@@ -79,38 +76,30 @@ public class Llave implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Compania getCompania() {
-		return compania;
+	public Long getComp() {
+		return comp;
 	}
 
-	public void setCompania(Compania compania) {
-		this.compania = compania;
+	public void setComp(Long comp) {
+		this.comp = comp;
+	}
+	
+	public Date getfCrea() {
+		return fCrea;
 	}
 
-	public Date getFechaCreacion() {
-		return fechaCreacion;
+	public String getCod() {
+		return cod;
 	}
 
-	public void setFechaCreacion(Date fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setCod(String cod) {
+		this.cod = cod;
 	}
 
 	@Override
 	public String toString() {
-		return "Llave [id=" + id + ", estado=" + estado + ", tipo=" + tipo + ", compania=" + compania
-				+ ", fechaCreacion=" + fechaCreacion + ", codigo=" + codigo + "]";
+		return "Llave [id=" + id + ", estado=" + est + ", tipo=" + tipo + ", compania=" + comp
+				+ ", fechaCreacion=" + fCrea + ", codigo=" + cod + "]";
 	}
 	
 }

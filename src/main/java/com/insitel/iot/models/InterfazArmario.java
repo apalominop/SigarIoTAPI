@@ -3,17 +3,12 @@
  */
 package com.insitel.iot.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 /**
  * @author Agustín Palomino Pardo
@@ -29,133 +24,131 @@ public class InterfazArmario {
 	@Column(name = "iar_id", unique = true, nullable = false)
 	private Long id;
 
-	@JoinColumn(name = "iar_mcr_id", referencedColumnName = "mcr_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private MasterControlRegional masterControlRegional;
+	@Column(name = "iar_mcr_id")
+	private Long cr;
 	
 	@Column(name = "iar_name", length = 100)
-	private String nombre;
+	private String nom;
 	
 	@Column(name = "iar_address", length = 200)
-	private String direccion;
+	private String dir;
 	
 	@Column(name = "iar_lat")
-	private double latitud;
+	private double lat;
 	
 	@Column(name = "iar_long", nullable = true)
-	private double longitud;
+	private double lon;
 	
 	@Column(name = "iar_com_status", length = 3)
-	private String estadoPuerto;
+	private String ePto;
 	
 	@Column(name = "iar_status", length = 3)
-	private String estado;
+	private String est;
 	
 	@Column(name = "iar_com_port", length = 5)
-	private String puertoCom;
+	private String ptoCom;
 	
 	@Column(name = "iar_type_8_16", length = 3)
-	private String tipo_8_16;
+	private String t_8_16;
 	
 	@Column(name = "iar_carrier_0", length = 20)
-	private String carrier_0;
+	private String c_0;
 	
 	@Column(name = "iar_carrier_1", length = 20)
-	private String carrier_1;
+	private String c_1;
 	
 	@Column(name = "iar_carrier_2", length = 20)
-	private String carrier_2;
+	private String c_2;
 	
 	@Column(name = "iar_carrier_3", length = 20)
-	private String carrier_3;
+	private String c_3;
 	
 	@Column(name = "iar_carrier_4", length = 20)
-	private String carrier_4;
+	private String c_4;
 	
 	@Column(name = "iar_carrier_5", length = 20)
-	private String carrier_5;
+	private String c_5;
 	
 	@Column(name = "iar_carrier_6", length = 20)
-	private String carrier_6;
+	private String c_6;
 	
 	@Column(name = "iar_carrier_7", length = 20)
-	private String carrier_7;
+	private String c_7;
 	
 	@Column(name = "iar_carrier_8", length = 20)
-	private String carrier_8;
+	private String c_8;
 	
 	@Column(name = "iar_carrier_9", length = 20)
-	private String carrier_9;
+	private String c_9;
 	
 	@Column(name = "iar_carrier_10", length = 20)
-	private String carrier_10;
+	private String c_10;
 	
 	@Column(name = "iar_carrier_11", length = 20)
-	private String carrier_11;
+	private String c_11;
 	
 	@Column(name = "iar_carrier_12", length = 20)
-	private String carrier_12;
+	private String c_12;
 	
 	@Column(name = "iar_carrier_13", length = 20)
-	private String carrier_13;
+	private String c_13;
 	
 	@Column(name = "iar_carrier_14", length = 20)
-	private String carrier_14;
+	private String c_14;
 	
 	@Column(name = "iar_carrier_15", length = 20)
-	private String carrier_15;
+	private String c_15;
 
 	@Column(name = "iar_tel_0", length = 20)
-	private String telefono_0;
+	private String t_0;
 
 	@Column(name = "iar_tel_1", length = 20)
-	private String telefono_1;
+	private String t_1;
 
 	@Column(name = "iar_tel_2", length = 20)
-	private String telefono_2;
+	private String t_2;
 	
 	@Column(name = "iar_tel_3", length = 20)
-	private String telefono_3;
+	private String t_3;
 	
 	@Column(name = "iar_tel_4", length = 20)
-	private String telefono_4;
+	private String t_4;
 	
 	@Column(name = "iar_tel_5", length = 20)
-	private String telefono_5;
+	private String t_5;
 	
 	@Column(name = "iar_tel_6", length = 20)
-	private String telefono_6;
+	private String t_6;
 	
 	@Column(name = "iar_tel_7", length = 20)
-	private String telefono_7;
+	private String t_7;
 	
 	@Column(name = "iar_tel_8", length = 20)
-	private String telefono_8;
+	private String t_8;
 	
 	@Column(name = "iar_tel_9", length = 20)
-	private String telefono_9;
+	private String t_9;
 	
 	@Column(name = "iar_tel_10", length = 20)
-	private String telefono_10;
+	private String t_10;
 	
 	@Column(name = "iar_tel_11", length = 20)
-	private String telefono_11;
+	private String t_11;
 	
 	@Column(name = "iar_tel_12", length = 20)
-	private String telefono_12;
+	private String t_12;
 	
 	@Column(name = "iar_tel_13", length = 20)
-	private String telefono_13;
+	private String t_13;
 	
 	@Column(name = "iar_tel_14", length = 20)
-	private String telefono_14;
+	private String t_14;
 	
 	@Column(name = "iar_tel_15", length = 20)
-	private String telefono_15;
+	private String t_15;
+
 	
 	//**Getters y setters
-
 	public Long getId() {
 		return id;
 	}
@@ -164,206 +157,212 @@ public class InterfazArmario {
 		this.id = id;
 	}
 
-	public MasterControlRegional getMasterControlRegional() {
-		return masterControlRegional;
+	public Long getCr() {
+		return cr;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public void setCr(Long cr) {
+		this.cr = cr;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public String getNom() {
+		return nom;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public String getDir() {
+		return dir;
 	}
 
-	public double getLatitud() {
-		return latitud;
+	public void setDir(String dir) {
+		this.dir = dir;
 	}
 
-	public void setLatitud(double latitud) {
-		this.latitud = latitud;
+	public double getLat() {
+		return lat;
 	}
 
-	public double getLongitud() {
-		return longitud;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
-	public void setLongitud(double longitud) {
-		this.longitud = longitud;
+	public double getLon() {
+		return lon;
 	}
 
-	public String getEstadoPuerto() {
-		return estadoPuerto;
+	public void setLon(double lon) {
+		this.lon = lon;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getePto() {
+		return ePto;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setePto(String ePto) {
+		this.ePto = ePto;
 	}
 
-	public String getPuertoCom() {
-		return puertoCom;
+	public String getEst() {
+		return est;
 	}
 
-	public String getTipo_8_16() {
-		return tipo_8_16;
+	public void setEst(String est) {
+		this.est = est;
 	}
 
-	public String getCarrier_0() {
-		return carrier_0;
+	public String getPtoCom() {
+		return ptoCom;
 	}
 
-	public String getCarrier_1() {
-		return carrier_1;
+	public void setPtoCom(String ptoCom) {
+		this.ptoCom = ptoCom;
 	}
 
-	public String getCarrier_2() {
-		return carrier_2;
+	public String getT_8_16() {
+		return t_8_16;
 	}
 
-	public String getCarrier_3() {
-		return carrier_3;
+	public String getC_0() {
+		return c_0;
 	}
 
-	public String getCarrier_4() {
-		return carrier_4;
+	public String getC_1() {
+		return c_1;
 	}
 
-	public String getCarrier_5() {
-		return carrier_5;
+	public String getC_2() {
+		return c_2;
 	}
 
-	public String getCarrier_6() {
-		return carrier_6;
+	public String getC_3() {
+		return c_3;
 	}
 
-	public String getCarrier_7() {
-		return carrier_7;
+	public String getC_4() {
+		return c_4;
 	}
 
-	public String getCarrier_8() {
-		return carrier_8;
+	public String getC_5() {
+		return c_5;
 	}
 
-	public String getCarrier_9() {
-		return carrier_9;
+	public String getC_6() {
+		return c_6;
 	}
 
-	public String getCarrier_10() {
-		return carrier_10;
+	public String getC_7() {
+		return c_7;
 	}
 
-	public String getCarrier_11() {
-		return carrier_11;
+	public String getC_8() {
+		return c_8;
 	}
 
-	public String getCarrier_12() {
-		return carrier_12;
+	public String getC_9() {
+		return c_9;
 	}
 
-	public String getCarrier_13() {
-		return carrier_13;
+	public String getC_10() {
+		return c_10;
 	}
 
-	public String getCarrier_14() {
-		return carrier_14;
+	public String getC_11() {
+		return c_11;
 	}
 
-	public String getCarrier_15() {
-		return carrier_15;
+	public String getC_12() {
+		return c_12;
 	}
 
-	public String getTelefono_0() {
-		return telefono_0;
+	public String getC_13() {
+		return c_13;
 	}
 
-	public String getTelefono_1() {
-		return telefono_1;
+	public String getC_14() {
+		return c_14;
 	}
 
-	public String getTelefono_2() {
-		return telefono_2;
+	public String getC_15() {
+		return c_15;
 	}
 
-	public String getTelefono_3() {
-		return telefono_3;
+	public String getT_0() {
+		return t_0;
 	}
 
-	public String getTelefono_4() {
-		return telefono_4;
+	public String getT_1() {
+		return t_1;
 	}
 
-	public String getTelefono_5() {
-		return telefono_5;
+	public String getT_2() {
+		return t_2;
 	}
 
-	public String getTelefono_6() {
-		return telefono_6;
+	public String getT_3() {
+		return t_3;
 	}
 
-	public String getTelefono_7() {
-		return telefono_7;
+	public String getT_4() {
+		return t_4;
 	}
 
-	public String getTelefono_8() {
-		return telefono_8;
+	public String getT_5() {
+		return t_5;
 	}
 
-	public String getTelefono_9() {
-		return telefono_9;
+	public String getT_6() {
+		return t_6;
 	}
 
-	public String getTelefono_10() {
-		return telefono_10;
+	public String getT_7() {
+		return t_7;
 	}
 
-	public String getTelefono_11() {
-		return telefono_11;
+	public String getT_8() {
+		return t_8;
 	}
 
-	public String getTelefono_12() {
-		return telefono_12;
+	public String getT_9() {
+		return t_9;
 	}
 
-	public String getTelefono_13() {
-		return telefono_13;
+	public String getT_10() {
+		return t_10;
 	}
 
-	public String getTelefono_14() {
-		return telefono_14;
+	public String getT_11() {
+		return t_11;
 	}
 
-	public String getTelefono_15() {
-		return telefono_15;
+	public String getT_12() {
+		return t_12;
+	}
+
+	public String getT_13() {
+		return t_13;
+	}
+
+	public String getT_14() {
+		return t_14;
+	}
+
+	public String getT_15() {
+		return t_15;
 	}
 
 	@Override
 	public String toString() {
-		return "InterfazArmario [id=" + id + ", masterControlRegional=" + masterControlRegional + ", nombre=" + nombre
-				+ ", direccion=" + direccion + ", latitud=" + latitud + ", longitud=" + longitud + ", estadoPuerto="
-				+ estadoPuerto + ", estado=" + estado + ", puertoCom=" + puertoCom + ", tipo_8_16=" + tipo_8_16
-				+ ", carrier_0=" + carrier_0 + ", carrier_1=" + carrier_1 + ", carrier_2=" + carrier_2 + ", carrier_3="
-				+ carrier_3 + ", carrier_4=" + carrier_4 + ", carrier_5=" + carrier_5 + ", carrier_6=" + carrier_6
-				+ ", carrier_7=" + carrier_7 + ", carrier_8=" + carrier_8 + ", carrier_9=" + carrier_9 + ", carrier_10="
-				+ carrier_10 + ", carrier_11=" + carrier_11 + ", carrier_12=" + carrier_12 + ", carrier_13="
-				+ carrier_13 + ", carrier_14=" + carrier_14 + ", carrier_15=" + carrier_15 + ", telefono_0="
-				+ telefono_0 + ", telefono_1=" + telefono_1 + ", telefono_2=" + telefono_2 + ", telefono_3="
-				+ telefono_3 + ", telefono_4=" + telefono_4 + ", telefono_5=" + telefono_5 + ", telefono_6="
-				+ telefono_6 + ", telefono_7=" + telefono_7 + ", telefono_8=" + telefono_8 + ", telefono_9="
-				+ telefono_9 + ", telefono_10=" + telefono_10 + ", telefono_11=" + telefono_11 + ", telefono_12="
-				+ telefono_12 + ", telefono_13=" + telefono_13 + ", telefono_14=" + telefono_14 + ", telefono_15="
-				+ telefono_15 + "]";
+		return "InterfazArmario [id=" + id + ", cr=" + cr + ", nom=" + nom + ", dir=" + dir + ", lat=" + lat + ", lon="
+				+ lon + ", ePto=" + ePto + ", est=" + est + ", ptoCom=" + ptoCom + ", t_8_16=" + t_8_16 + ", c_0=" + c_0
+				+ ", c_1=" + c_1 + ", c_2=" + c_2 + ", c_3=" + c_3 + ", c_4=" + c_4 + ", c_5=" + c_5 + ", c_6=" + c_6
+				+ ", c_7=" + c_7 + ", c_8=" + c_8 + ", c_9=" + c_9 + ", c_10=" + c_10 + ", c_11=" + c_11 + ", c_12="
+				+ c_12 + ", c_13=" + c_13 + ", c_14=" + c_14 + ", c_15=" + c_15 + ", t_0=" + t_0 + ", t_1=" + t_1
+				+ ", t_2=" + t_2 + ", t_3=" + t_3 + ", t_4=" + t_4 + ", t_5=" + t_5 + ", t_6=" + t_6 + ", t_7=" + t_7
+				+ ", t_8=" + t_8 + ", t_9=" + t_9 + ", t_10=" + t_10 + ", t_11=" + t_11 + ", t_12=" + t_12 + ", t_13="
+				+ t_13 + ", t_14=" + t_14 + ", t_15=" + t_15 + "]";
 	}
-	
+
 }

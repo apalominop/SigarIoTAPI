@@ -36,6 +36,7 @@ public class Evento {
 	private boolean fechaEstimada;
 	
 	@Column(name = "eve_hour")
+	@JsonFormat(pattern = "HH:mm:ss.ss")
 	private LocalTime hora;
 	
 	@Column(name = "eve_cr_id", length = 3)

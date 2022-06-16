@@ -49,13 +49,11 @@ public class Usuario {
 	@Column(name = "usr_type", length = 3)
 	private String tipo;
 
-	@ManyToOne
-	@JoinColumn(name = "usr_cmp_id", referencedColumnName = "cmp_id")
-	private Compania compania;
+	@Column(name = "usr_cmp_id")
+	private Long compania;
 	
-	@JoinColumn(name = "usr_dep_id", referencedColumnName = "dep_id")
-	@ManyToOne
-    private Departamento departamento;
+	@Column(name = "usr_dep_id")
+    private Long departamento;
 
 	@Column(name = "usr_email", length = 100)
 	private String correo;
@@ -126,19 +124,19 @@ public class Usuario {
 		this.tipo = tipo;
 	}
 
-	public Compania getCompania() {
+	public Long getCompania() {
 		return compania;
 	}
 
-	public void setCompania(Compania compania) {
+	public void setCompania(Long compania) {
 		this.compania = compania;
 	}
 
-	public Departamento getDepartamento() {
+	public Long getDepartamento() {
 		return departamento;
 	}
 
-	public void setDepartamento(Departamento departamento) {
+	public void setDepartamento(Long departamento) {
 		this.departamento = departamento;
 	}
 

@@ -29,17 +29,11 @@ public class LlaveMaestraCR {
 	@Column(name = "mkc_id", unique = true, nullable = false)
 	private Long id;
 
-	@JoinColumn(name = "mkc_mcr_id", referencedColumnName = "mcr_id")
-	//@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	//@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	@ManyToOne
-	private MasterControlRegional masterControlRegional;
+	@Column(name = "mkc_mcr_id")
+	private Long cr;
 
-	@JoinColumn(name = "mkc_key_id", referencedColumnName = "key_id")
-	//@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	//@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	@ManyToOne
-	private Llave llave;
+	@Column(name = "mkc_key_id")
+	private Long llave;
 	
 	//**Getters y setters
 
@@ -51,26 +45,25 @@ public class LlaveMaestraCR {
 		this.id = id;
 	}
 
-	public MasterControlRegional getMasterControlRegional() {
-		return masterControlRegional;
+	public Long getCr() {
+		return cr;
 	}
 
-	public void setMasterControlRegional(MasterControlRegional masterControlRegional) {
-		this.masterControlRegional = masterControlRegional;
+	public void setCr(Long cr) {
+		this.cr = cr;
 	}
 
-	public Llave getLlave() {
+	public Long getLlave() {
 		return llave;
 	}
 
-	public void setLlave(Llave llave) {
+	public void setLlave(Long llave) {
 		this.llave = llave;
 	}
 
 	@Override
 	public String toString() {
-		return "LlaveMaestraCR [id=" + id + ", masterControlRegional=" + masterControlRegional + ", llave=" + llave
-				+ "]";
+		return "LlaveMaestraCR [id=" + id + ", cr=" + cr + ", llave=" + llave + "]";
 	}
 
 }

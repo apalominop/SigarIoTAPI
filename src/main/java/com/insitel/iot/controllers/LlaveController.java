@@ -58,7 +58,7 @@ public class LlaveController {
 		Optional<Llave> encontrada = llaveService.obtenerLlavePorId(id);
 		if (encontrada.isPresent()) {
 			Llave aGrabar = encontrada.get();
-			aGrabar.setCompania(llave.getCompania());
+			aGrabar.setComp(llave.getComp());
 			aGrabar.setTipo(llave.getTipo());
 			llaveService.guardarLlave(aGrabar);
 			message = "Se actualizó la Llave exitosamente";
@@ -84,7 +84,7 @@ public class LlaveController {
 		Optional<Llave> encontrada = llaveService.obtenerLlavePorId(id);
 		if (encontrada.isPresent()) {
 			Llave aGrabar = encontrada.get();
-			aGrabar.setEstado(llave.getEstado());
+			aGrabar.setEst(llave.getEst());
 			llaveService.guardarLlave(aGrabar);
 			message = "Se cambió el estado de la Llave exitosamente";
 			return ResponseEntity.status(HttpStatus.OK).body(new FileMessage(message));

@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -32,11 +30,8 @@ public class DiaFestivo {
 	@Column(name = "hol_id", unique = true, nullable = false)
 	private Long id;
 	
-	@JoinColumn(name = "hol_cnt_id", referencedColumnName = "cnt_id")
-//	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	@ManyToOne
-	private Pais pais;
+	@Column(name = "hol_cnt_id")
+	private Long pais;
 	
 	@Column(name = "hol_date")
 	@JsonFormat(pattern="yyyy-MM-dd")
@@ -54,11 +49,11 @@ public class DiaFestivo {
 		this.id = id;
 	}
 
-	public Pais getPais() {
+	public Long getPais() {
 		return pais;
 	}
 
-	public void setPais(Pais pais) {
+	public void setPais(Long pais) {
 		this.pais = pais;
 	}
 

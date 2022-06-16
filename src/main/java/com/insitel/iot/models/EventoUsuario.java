@@ -45,6 +45,7 @@ public class EventoUsuario {
 	private Date fecha;
 
 	@Column(name ="uev_hour")
+	@JsonFormat(pattern="HH:mm:ss.ss")
 	private LocalTime hora;
 	
 	@Column(name = "uev_cr_id")

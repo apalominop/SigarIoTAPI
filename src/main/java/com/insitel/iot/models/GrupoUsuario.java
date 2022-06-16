@@ -29,15 +29,11 @@ public class GrupoUsuario {
 	@Column(name = "gru_id", unique = true, nullable = false)
 	private Long id;
 	
-	@JoinColumn(name ="gru_grp_id",referencedColumnName = "grp_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Grupo grupo;
+	@Column(name ="gru_grp_id")
+	private Long grupo;
 	
-	@JoinColumn(name ="gru_usr_id", referencedColumnName = "usr_id")
-	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	private Usuario usuario;
+	@Column(name ="gru_usr_id")
+	private Long usuario;
 
 
 	//**Getters y setters
@@ -50,19 +46,19 @@ public class GrupoUsuario {
 		this.id = id;
 	}
 
-	public Grupo getGrupo() {
+	public Long getGrupo() {
 		return grupo;
 	}
 
-	public void setGrupo(Grupo grupo) {
+	public void setGrupo(Long grupo) {
 		this.grupo = grupo;
 	}
 
-	public Usuario getUsuario() {
+	public Long getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Long usuario) {
 		this.usuario = usuario;
 	}
 

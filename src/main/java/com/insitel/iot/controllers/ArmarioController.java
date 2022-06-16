@@ -4,6 +4,7 @@
 package com.insitel.iot.controllers;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,18 +57,18 @@ public class ArmarioController {
 		
 		String message = "";
 		Long id = armario.getId();
-		String direccion = armario.getDireccion();
-		String distrito = armario.getDistrito();
-		Double latitud = armario.getLatitud();
-		Double longitud = armario.getLongitud();
+		String direccion = armario.getDir();
+		String distrito = armario.getDist();
+		Double latitud = armario.getLat();
+		Double longitud = armario.getLon();
 		
 		Optional<Armario> encontrado = armarioService.obtenerArmarioPorId(id);
 		if (encontrado.isPresent()) {
 			Armario aGrabar = encontrado.get();
-			aGrabar.setDireccion(direccion);
-			aGrabar.setDistrito(distrito);
-			aGrabar.setLatitud(latitud);
-			aGrabar.setLongitud(longitud);
+			aGrabar.setDir(direccion);
+			aGrabar.setDist(distrito);
+			aGrabar.setLat(latitud);
+			aGrabar.setLon(longitud);
 			
 			armarioService.guardarArmario(aGrabar);
 			message = "Se ha actualizado el Armario correctamente";
@@ -94,7 +95,7 @@ public class ArmarioController {
 		Optional<Armario> encontrado = armarioService.obtenerArmarioPorId(id);
 		if (encontrado.isPresent()) {
 			Armario aGrabar = encontrado.get();
-			aGrabar.setEstado(armario.getEstado());
+			aGrabar.setEst(armario.getEst());
 			
 			armarioService.guardarArmario(aGrabar);
 			message = "Se cambió el estado del Armario correctamente";
@@ -121,6 +122,11 @@ public class ArmarioController {
 		} else {
 			return ResponseEntity.noContent().build();
 		}
+	}
+	
+	@RequestMapping(value = "estados", method = RequestMethod.GET)
+	public List<Object[]> obtenerEstadosTodosArmarios() throws Exception {
+		return armarioService.obtenerEstadosTodosArmarios();
 	}
 
 }

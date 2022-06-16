@@ -26,13 +26,11 @@ public class LlaveUsuario {
 	@Column(name = "kus_id", unique = true, nullable = false)
 	private Long id;
 	
-	@JoinColumn(name = "kus_key_id", referencedColumnName = "key_id")
-	@ManyToOne
-	private Llave llave;
+	@Column(name = "kus_key_id")
+	private Long llave;
 	
-	@JoinColumn(name = "kus_usr_id", referencedColumnName = "usr_id")
-	@ManyToOne
-	private Usuario usuario;
+	@Column(name = "kus_usr_id")
+	private Long usuario;
 	
 	//**Getters y setters
 
@@ -44,19 +42,19 @@ public class LlaveUsuario {
 		this.id = id;
 	}
 
-	public Llave getLlave() {
+	public Long getLlave() {
 		return llave;
 	}
 
-	public void setLlave(Llave llave) {
+	public void setLlave(Long llave) {
 		this.llave = llave;
 	}
 
-	public Usuario getUsuario() {
+	public Long getUsuario() {
 		return usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(Long usuario) {
 		this.usuario = usuario;
 	}
 

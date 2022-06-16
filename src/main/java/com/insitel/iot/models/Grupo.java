@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -36,9 +34,8 @@ public class Grupo {
 	@Column(name = "grp_accountable", length = 100)
 	private String responsable;
 	
-	@JoinColumn(name = "grp_cmp_id", referencedColumnName = "cmp_id")
-	@ManyToOne
-	private Compania compania;
+	@Column(name = "grp_cmp_id")
+	private Long compania;
 	
 	@Column(name = "grp_status", length = 3)
 	private String estado;
@@ -71,22 +68,6 @@ public class Grupo {
 		super();
 	}
 	
-	public Grupo(Long id, String nombre, String responsable, Compania compania, String estado, Date inicioFecha,
-			Date finFecha, String inicioHora, String finHora, boolean sabado, boolean domingo, boolean diaFestivo) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.responsable = responsable;
-		this.compania = compania;
-		this.estado = estado;
-		this.inicioFecha = inicioFecha;
-		this.finFecha = finFecha;
-		this.inicioHora = inicioHora;
-		this.finHora = finHora;
-		this.sabado = sabado;
-		this.domingo = domingo;
-		this.diaFestivo = diaFestivo;
-	}
 
 	//**Getters y setters
 	public Long getId() {
@@ -113,11 +94,11 @@ public class Grupo {
 		this.responsable = responsable;
 	}
 
-	public Compania getCompania() {
+	public Long getCompania() {
 		return compania;
 	}
 
-	public void setCompania(Compania compania) {
+	public void setCompania(Long compania) {
 		this.compania = compania;
 	}
 

@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,93 +27,87 @@ public class Armario {
 	@Column(name = "cab_id", unique = true, nullable = false)
 	private Long id;
 
-	@JoinColumn(name = "cab_mcr_id", referencedColumnName = "mcr_id", nullable = false)
-//	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	@ManyToOne
-	private MasterControlRegional masterControlRegional;
+	@Column(name = "cab_mcr_id", nullable = false)
+	private Long cr;
 
-	@JoinColumn(name = "cab_iar_id", referencedColumnName = "iar_id", nullable = false)
-//	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-	@ManyToOne
-	private InterfazArmario interfazArmario;
+	@Column(name = "cab_iar_id", nullable = false)
+	private Long ia;
 
 	@Column(name = "cab_created_at")
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date fechaCreacion;
 
 	@Column(name = "cab_address", length = 200)
-	private String direccion;
+	private String dir;
 
 	@Column(name = "cab_lat")
-	private Double latitud;
+	private Double lat;
 
 	@Column(name = "cab_long")
-	private Double longitud;
+	private Double lon;
 
 	@Column(name = "cab_status", length = 3)
-	private String estado;
+	private String est;
 
 	@Column(name = "cab_port_ia", length = 3)
-	private String puertoIA;
+	private String pIA;
 
 	@Column(name = "cab_phis_port", length = 3)
-	private String puertoFisico;
+	private String pFis;
 
 	@Column(name = "cab_district", length = 20)
-	private String distrito;
+	private String dist;
 
 	@Column(name = "cab_clock", length = 5)
 	private String reloj;
 
 	@Column(name = "cab_door_status", length = 3)
-	private String estadoPuerta;
+	private String ePta;
 
 	@Column(name = "cab_battery_status", length = 3)
-	private String estadoBateria;
+	private String eBat;
 
 	@Column(name = "cab_reader_status", length = 3)
-	private String estadoLectura;
+	private String eLect;
 
 	@Column(name = "cab_servo_status", length = 3)
-	private String estadoServomotor;
+	private String eServomotor;
 
 	@Column(name = "cab_position_status", length = 3)
-	private String estadoPosicion;
+	private String ePos;
 
 	@Column(name = "cab_carrier_status", length = 3)
-	private String estadoCarrier;
+	private String eCarrier;
 
 	@Column(name = "cab_power_status", length = 3)
-	private String estadoEnergia;
+	private String eEnergia;
 
 	@Column(name = "cab_activation_status", length = 3)
-	private String estadoActivacion;
+	private String eAct;
 
 	@Column(name = "cab_masterkey_status", length = 3)
-	private String estadoLlaveMaestra;
+	private String eKMaster;
 
 	@Column(name = "cab_sleep_rfid_status", length = 3)
-	private String estadoRfidDormir;
+	private String eRfidDormir;
 
 	@Column(name = "cab_sensor1_status", length = 3)
-	private String estadoSensor1;
+	private String eS1;
 
 	@Column(name = "cab_sensor2_status", length = 3)
-	private String estadoSensor2;
+	private String eS2;
 
 	@Column(name = "cab_sensor3_status", length = 3)
-	private String estadoSensor3;
+	private String eS3;
 	
 	@Column(name = "cab_sensor4_status", length = 3)
-	private String estadoSensor4;
+	private String eS4;
 
 	@Column(name = "cab_number")
-	private Long numeroArmario;
+	private Long numArm;
 	
 	//**Getters y setters
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -123,138 +116,162 @@ public class Armario {
 		this.id = id;
 	}
 
-	public MasterControlRegional getMasterControlRegional() {
-		return masterControlRegional;
+	public Long getCr() {
+		return cr;
 	}
 
-	public InterfazArmario getInterfazArmario() {
-		return interfazArmario;
+	public void setCr(Long cr) {
+		this.cr = cr;
+	}
+
+	public Long getIa() {
+		return ia;
+	}
+
+	public void setIa(Long ia) {
+		this.ia = ia;
 	}
 
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public String getDir() {
+		return dir;
 	}
 
-	public Double getLatitud() {
-		return latitud;
+	public void setDir(String dir) {
+		this.dir = dir;
 	}
 
-	public void setLatitud(Double latitud) {
-		this.latitud = latitud;
+	public Double getLat() {
+		return lat;
 	}
 
-	public Double getLongitud() {
-		return longitud;
+	public void setLat(Double lat) {
+		this.lat = lat;
 	}
 
-	public void setLongitud(Double longitud) {
-		this.longitud = longitud;
+	public Double getLon() {
+		return lon;
 	}
 
-	public String getEstado() {
-		return estado;
+	public void setLon(Double lon) {
+		this.lon = lon;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public String getEst() {
+		return est;
 	}
 
-	public String getPuertoIA() {
-		return puertoIA;
+	public void setEst(String est) {
+		this.est = est;
 	}
 
-	public String getPuertoFisico() {
-		return puertoFisico;
+	public String getpIA() {
+		return pIA;
 	}
 
-	public String getDistrito() {
-		return distrito;
+	public void setpIA(String pIA) {
+		this.pIA = pIA;
 	}
 
-	public void setDistrito(String distrito) {
-		this.distrito = distrito;
+	public String getpFis() {
+		return pFis;
+	}
+
+	public void setpFisico(String pFis) {
+		this.pFis = pFis;
+	}
+
+	public String getDist() {
+		return dist;
+	}
+
+	public void setDist(String dist) {
+		this.dist = dist;
 	}
 
 	public String getReloj() {
 		return reloj;
 	}
 
-	public String getEstadoPuerta() {
-		return estadoPuerta;
+	public void setReloj(String reloj) {
+		this.reloj = reloj;
 	}
 
-	public String getEstadoBateria() {
-		return estadoBateria;
+	public String getePta() {
+		return ePta;
 	}
 
-	public String getEstadoLectura() {
-		return estadoLectura;
+	public String geteBat() {
+		return eBat;
 	}
 
-	public String getEstadoPosicion() {
-		return estadoPosicion;
+	public String geteLect() {
+		return eLect;
 	}
 
-	public String getEstadoCarrier() {
-		return estadoCarrier;
+	public String geteServomotor() {
+		return eServomotor;
 	}
 
-	public String getEstadoEnergia() {
-		return estadoEnergia;
+	public String getePos() {
+		return ePos;
 	}
 
-	public String getEstadoActivacion() {
-		return estadoActivacion;
+	public String geteCarrier() {
+		return eCarrier;
 	}
 
-	public String getEstadoLlaveMaestra() {
-		return estadoLlaveMaestra;
+	public String geteEnergia() {
+		return eEnergia;
 	}
 
-	public String getEstadoRfidDormir() {
-		return estadoRfidDormir;
+	public String geteAct() {
+		return eAct;
 	}
 
-	public String getEstadoSensor1() {
-		return estadoSensor1;
+	public String geteKMaster() {
+		return eKMaster;
 	}
 
-	public String getEstadoSensor2() {
-		return estadoSensor2;
+	public String geteRfidDormir() {
+		return eRfidDormir;
 	}
 
-	public String getEstadoSensor3() {
-		return estadoSensor3;
+	public String geteS1() {
+		return eS1;
 	}
 
-	public String getEstadoSensor4() {
-		return estadoSensor4;
+	public String geteS2() {
+		return eS2;
 	}
 
-	public Long getNumeroArmario() {
-		return numeroArmario;
+	public String geteS3() {
+		return eS3;
+	}
+
+	public String geteS4() {
+		return eS4;
+	}
+
+	public Long getNumArm() {
+		return numArm;
 	}
 
 	@Override
 	public String toString() {
-		return "Armario [id=" + id + ", masterControlRegional=" + masterControlRegional + ", interfazArmario="
-				+ interfazArmario + ", fechaCreacion=" + fechaCreacion + ", direccion=" + direccion + ", latitud="
-				+ latitud + ", longitud=" + longitud + ", estado=" + estado + ", puertoIA=" + puertoIA
-				+ ", puertoFisico=" + puertoFisico + ", distrito=" + distrito + ", reloj=" + reloj + ", estadoPuerta="
-				+ estadoPuerta + ", estadoBateria=" + estadoBateria + ", estadoLectura=" + estadoLectura
-				+ ", estadoServomotor=" + estadoServomotor + ", estadoPosicion=" + estadoPosicion + ", estadoCarrier="
-				+ estadoCarrier + ", estadoEnergia=" + estadoEnergia + ", estadoActivacion=" + estadoActivacion
-				+ ", estadoLlaveMaestra=" + estadoLlaveMaestra + ", estadoRfidDormir=" + estadoRfidDormir
-				+ ", estadoSensor1=" + estadoSensor1 + ", estadoSensor2=" + estadoSensor2 + ", estadoSensor3="
-				+ estadoSensor3 + ", estadoSensor4=" + estadoSensor4 + ", numeroArmario=" + numeroArmario + "]";
+		return "Armario [id=" + id + ", cr=" + cr + ", ia=" + ia + ", fechaCreacion=" + fechaCreacion + ", dir=" + dir
+				+ ", lat=" + lat + ", lon=" + lon + ", est=" + est + ", pIA=" + pIA + ", pFisico=" + pFis + ", dist="
+				+ dist + ", reloj=" + reloj + ", ePta=" + ePta + ", eBat=" + eBat + ", eLect=" + eLect
+				+ ", eServomotor=" + eServomotor + ", ePos=" + ePos + ", eCarrier=" + eCarrier + ", eEnergia="
+				+ eEnergia + ", eAct=" + eAct + ", eKMaster=" + eKMaster + ", eRfidDormir=" + eRfidDormir + ", eS1="
+				+ eS1 + ", eS2=" + eS2 + ", eS3=" + eS3 + ", eS4=" + eS4 + ", numArm=" + numArm + "]";
 	}
-
+	
 }
