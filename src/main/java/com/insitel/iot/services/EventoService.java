@@ -5,7 +5,6 @@ package com.insitel.iot.services;
 
 import java.sql.Date;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +30,7 @@ public class EventoService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Optional<ArrayList<Evento>> obtenerEventosEntreFechasyHoras(Date fechaI, Date fechaF,
+	public List<Object[]> obtenerEventosEntreFechasyHoras(Date fechaI, Date fechaF,
 			LocalTime horaI, LocalTime horaF) throws Exception {
 		
 		return eventoRepository.obtenerEventosEntreFechasYHoras(fechaI, fechaF, horaI, horaF);
@@ -43,7 +42,7 @@ public class EventoService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Optional<ArrayList<Evento>> obtenerEventosEntreRangoConFiltro(Date fechaI, Date fechaF,
+	public List<Object[]> obtenerEventosEntreRangoConFiltro(Date fechaI, Date fechaF,
 			LocalTime horaI, LocalTime horaF, String tipo) throws Exception {
 
 		return eventoRepository.obtenerEventosEntreRangoConFiltro(fechaI, fechaF, horaI, horaF, tipo);
@@ -103,6 +102,54 @@ public class EventoService {
 			LocalTime horaI, LocalTime horaF) throws Exception {
 		return eventoRepository.obtenerEventsEntreFechaYHora(fechaI, fechaF, horaI, horaF);
 		
+	}
+	
+	/**
+	 * Método para obtener los eventos por codigo  entre dos fechas
+	 * @param fechaI
+	 * @param fechaF
+	 * @param cod
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Object[]> obtenerEvenUserPorCodYFecha(Date fechaI, Date fechaF, String cod) throws Exception {
+		return eventoRepository.obtenerEvenUserPorCodYFecha(fechaI, fechaF, cod);
+	}
+	
+	/**
+	 * Método para obtener lista de un armario por un evento determinado
+	 * @param cabId
+	 * @param evento
+	 * @return
+	 * @throws Exception
+	 */
+	public Evento obtenerPorEventYCabId(String cabNum, List<String> evento) throws Exception {
+		return eventoRepository.obtenerPorEventYCabId(cabNum, evento);
+	}
+	
+	/**
+	 * Método para obtener el último evento en un determinado armario
+	 * @param cabNum
+	 * @param evento
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Object[]> obtenerEvUserPorEveYArmario(String cabNum, String evento) throws Exception {
+		return eventoRepository.obtenerEvUserPorEveYArmario(cabNum, evento);
+	}
+
+	/**
+	 * Método para obtener los usuarios que han tenido evento(s) en los Armarios 
+	 * entre dos fechas
+	 * @param fechaI
+	 * @param fechaF
+	 * @param cedula
+	 * @return
+	 * @throws Exception
+	 */
+	public Optional<Object[]> obtenerUsersUsaron(Date fechaI, Date fechaF, String cedula)
+			throws Exception {
+		return eventoRepository.obtenerUsersUsaron(fechaI, fechaF, cedula);
 	}
 	
 }

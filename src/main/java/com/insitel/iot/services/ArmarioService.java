@@ -55,9 +55,38 @@ public class ArmarioService {
 	
 	/**
 	 * Método para obtener los estados de todos los armarios del CR
+	 * @return
+	 * @throws Exception
 	 */
 	public List<Object[]> obtenerEstadosTodosArmarios() throws Exception {
 		return armarioRepository.obtenerEstadosTodosArmarios();
+	}
+	
+	/**
+	 * Método para obtener el listado de los armarios activos con Servo en falla
+	 * @return
+	 * @throws Exception
+	 */
+	public Optional<ArrayList<Armario>> ObtenerArmariosConServoFalla() throws Exception {
+		return armarioRepository.ObtenerArmariosConServoFalla();
+	}
+	
+	/**
+	 * Método para obtener los armarios activos con portadora o telealimentación en falla
+	 * @return
+	 * @throws Exception
+	 */
+	public Optional<ArrayList<Armario>> obtenerArmariosConPortOTelEnFalla() throws Exception {
+		return armarioRepository.obtenerArmariosConPortOTelEnFalla();
+	}
+	
+	/**
+	 * Método para obtener los armarios activos con puerta entreabierta
+	 * @return
+	 * @throws Exception
+	 */
+	public Optional<ArrayList<Armario>> obtenerArmariosConPuertaEntrAbierta() throws Exception {
+		return armarioRepository.obtenerArmariosConPuertaEntrAbierta();
 	}
 
 }

@@ -5,14 +5,11 @@ package com.insitel.iot.services;
 
 import java.sql.Date;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.insitel.iot.models.InterfazArmarioEvento;
 import com.insitel.iot.repositories.IasEventosRepository;
 
 /**
@@ -35,7 +32,7 @@ public class IasEventosService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Optional<ArrayList<InterfazArmarioEvento>> obtenerEventosIasEntreFechasYHoras(Date fechaI,
+	public List<Object[]> obtenerEventosIasEntreFechasYHoras(Date fechaI,
 			Date fechaF, LocalTime horaI, LocalTime horaF) throws Exception {
 		
 		return iasEventosRepository.obtenerEventosIasEntreFechasYHoras(fechaI, fechaF, horaI, horaF);
@@ -52,7 +49,7 @@ public class IasEventosService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Optional<ArrayList<InterfazArmarioEvento>> obtenerEventosIasEntreFechasYHorasFiltrado(Date fechaI,
+	public List<Object[]> obtenerEventosIasEntreFechasYHorasFiltrado(Date fechaI,
 			Date fechaF, LocalTime horaI, LocalTime horaF, String tipo) throws Exception {
 		
 		return iasEventosRepository.obtenerEventosIasEntreRangoFiltrado(fechaI, fechaF, horaI, horaF, tipo);

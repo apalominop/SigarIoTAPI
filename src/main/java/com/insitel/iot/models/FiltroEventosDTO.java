@@ -21,7 +21,7 @@ public class FiltroEventosDTO {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private LocalTime horaInicio;
-	private LocalTime horafin;
+	private LocalTime horaFin;
 	private String tipoEvento;
 	
 	public Date getFechaInicio() {
@@ -48,12 +48,12 @@ public class FiltroEventosDTO {
 		this.horaInicio = horaInicio;
 	}
 
-	public LocalTime getHorafin() {
-		return horafin;
+	public LocalTime getHoraFin() {
+		return horaFin;
 	}
 
-	public void setHorafin(LocalTime horafin) {
-		this.horafin = horafin;
+	public void setHoraFin(LocalTime horaFin) {
+		this.horaFin = horaFin;
 	}
 
 	public String getTipoEvento() {
@@ -67,7 +67,7 @@ public class FiltroEventosDTO {
 	@Override
 	public String toString() {
 		return "FiltroEventosDTO [fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", horaInicio=" + horaInicio
-				+ ", horafin=" + horafin + ", tipoEvento=" + tipoEvento + "]";
+				+ ", horaFin=" + horaFin + ", tipoEvento=" + tipoEvento + "]";
 	}
 	
 }

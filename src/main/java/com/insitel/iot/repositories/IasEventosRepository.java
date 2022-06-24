@@ -5,8 +5,7 @@ package com.insitel.iot.repositories;
 
 import java.sql.Date;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -33,7 +32,7 @@ public interface IasEventosRepository extends CrudRepository<InterfazArmarioEven
 	@Query(value = "select * from iot_ia_events "
 			+ "	where ia_eve_date between ?1 and ?2 "
 			+ "	and ia_eve_time between ?3 and ?4", nativeQuery = true)
-	public Optional<ArrayList<InterfazArmarioEvento>> obtenerEventosIasEntreFechasYHoras(Date fechaI, 
+	public List<Object[]> obtenerEventosIasEntreFechasYHoras(Date fechaI, 
 			Date fechaF, LocalTime horaI, LocalTime horaF);
 	
 	/**
@@ -49,7 +48,7 @@ public interface IasEventosRepository extends CrudRepository<InterfazArmarioEven
 			+ "	where ia_eve_date between ?1 and ?2 "
 			+ "	and ia_eve_time between ?3 and ?4"
 			+ " and ia_eve_name = ?5", nativeQuery = true)
-	public Optional<ArrayList<InterfazArmarioEvento>> obtenerEventosIasEntreRangoFiltrado(Date fechaI, Date 
+	public List<Object[]> obtenerEventosIasEntreRangoFiltrado(Date fechaI, Date 
 			fechaF, LocalTime horaI, LocalTime horaF, String tipo);
 
 }

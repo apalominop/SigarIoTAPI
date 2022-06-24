@@ -52,4 +52,13 @@ public class UsuarioService {
 		return usuarioRepository.findById(id);
 	}
 	
+	/**
+	 * Método para obtener todos los usuarios activos
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<Usuario> obtenerUsersActivos() throws Exception {
+		return (ArrayList<Usuario>) usuarioRepository.obtenerUsersActivos();
+	}
+	
 }

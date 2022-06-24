@@ -75,6 +75,10 @@ public class Evento {
 		return fechaEstimada;
 	}
 
+	public boolean getFechaEstimada() {
+		return fechaEstimada;
+	}
+	
 	public void setFechaEstimada(boolean fechaEstimada) {
 		this.fechaEstimada = fechaEstimada;
 	}

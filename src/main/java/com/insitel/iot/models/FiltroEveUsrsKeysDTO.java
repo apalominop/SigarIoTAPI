@@ -18,6 +18,7 @@ public class FiltroEveUsrsKeysDTO {
 	private LocalTime horaFin;
 	private String documentoUser;
 	private String codKey;
+	private String cod;
 	
 	//***Constructors
 	public FiltroEveUsrsKeysDTO() {
@@ -87,11 +88,19 @@ public class FiltroEveUsrsKeysDTO {
 		this.codKey = codKey;
 	}
 
+	public String getCod() {
+		return cod;
+	}
+
+	public void setCod(String cod) {
+		this.cod = cod;
+	}
+
 	@Override
 	public String toString() {
 		return "FiltroEveUsrsKeysDTO [fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", horaInicio="
-				+ horaInicio + ", horafin=" + horaFin + ", documento=" + documentoUser + ", codKey=" + codKey + "]";
+				+ horaInicio + ", horaFin=" + horaFin + ", documentoUser=" + documentoUser + ", codKey=" + codKey
+				+ ", cod=" + cod + "]";
 	}
-	
 
 }
